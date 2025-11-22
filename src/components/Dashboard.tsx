@@ -1,0 +1,360 @@
+import { useQuery } from "convex/react";
+import { api } from "../../convex/_generated/api";
+
+interface DashboardProps {
+  onNavigate: (section: string) => void;
+}
+
+export function Dashboard({ onNavigate }: DashboardProps) {
+  const stats = useQuery(api.dashboard.getStats);
+  const recentActivity = useQuery(api.dashboard.getRecentActivity);
+  const salesChart = useQuery(api.dashboard.getSalesChart);
+  const topProducts = useQuery(api.dashboard.getTopSellingProducts);
+  const monthlyStats = useQuery(api.dashboard.getMonthlyStats);
+
+  if (!stats || !recentActivity || !salesChart) {
+    return (
+      <div className="animate-pulse space-y-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {[...Array(4)].map((_, i) => (
+            <div key={i} className="bg-gray-200 rounded-xl h-32"></div>
+          ))}
+        </div>
+      </div>
+    );
+  }
+
+  const formatCurrency = (amount: number) => {
+    return `৳${amount.toLocaleString('en-BD')}`;
+  };
+
+  const formatPercentage = (value: number) => {
+    return `${value >= 0 ? '+' : ''}${value.toFixed(1)}%`;
+  };
+
+  return (
+    <div className="space-y-6">
+      {/* Header */}
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between">
+        <div>
+          <h1 className="text-2xl lg:text-3xl font-bold text-gray-900">Dashboard</h1>
+          <p className="text-gray-600 mt-1">Welcome to Cello City Mobile Shop Management</p>
+        </div>
+        <div className="mt-4 sm:mt-0">
+          <button
+            onClick={() => onNavigate("pos")}
+            className="btn-primary"
+          >
+            🛒 New Sale
+          </button>
+        </div>
+      </div>
+
+      {/* Enhanced Stats Cards */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {/* Total Revenue */}
+        <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-xl p-6 text-white card-hover">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-green-100 text-sm font-medium">Total Revenue</p>
+              <p className="text-2xl font-bold">{formatCurrency(stats.totalRevenue)}</p>
+              <div className="flex items-center space-x-2 mt-1">
+                <p className="text-green-100 text-xs">Profit: {formatCurrency(stats.totalProfit)}</p>
+                <span className="text-green-200 text-xs">
+                  ({stats.profitMargin.toFixed(1)}%)
+                </span>
+              </div>
+            </div>
+            <div className="w-12 h-12 bg-green-400 rounded-lg flex items-center justify-center">
+              <span className="text-xl">💰</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Today's Sales */}
+        <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl p-6 text-white card-hover">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-blue-100 text-sm font-medium">Today's Revenue</p>
+              <p className="text-2xl font-bold">{formatCurrency(stats.todayRevenue)}</p>
+              <div className="flex items-center space-x-2 mt-1">
+                <p className="text-blue-100 text-xs">{stats.todaySales} sales</p>
+                <span className="text-blue-200 text-xs">
+                  Profit: {formatCurrency(stats.todayProfit)}
+                </span>
+              </div>
+            </div>
+            <div className="w-12 h-12 bg-blue-400 rounded-lg flex items-center justify-center">
+              <span className="text-xl">📈</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Monthly Growth */}
+        <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl p-6 text-white card-hover">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-purple-100 text-sm font-medium">Monthly Growth</p>
+              <p className="text-2xl font-bold">
+                {monthlyStats ? formatPercentage(monthlyStats.growth.revenue) : '0%'}
+              </p>
+              <p className="text-purple-100 text-xs mt-1">
+                Revenue vs last month
+              </p>
+            </div>
+            <div className="w-12 h-12 bg-purple-400 rounded-lg flex items-center justify-center">
+              <span className="text-xl">📊</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Low Stock Alert */}
+        <div className="bg-gradient-to-br from-red-500 to-red-600 rounded-xl p-6 text-white card-hover">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-red-100 text-sm font-medium">Low Stock Alerts</p>
+              <p className="text-2xl font-bold">{stats.lowStockAlerts}</p>
+              <p className="text-red-100 text-xs mt-1">Products need restock</p>
+            </div>
+            <div className="w-12 h-12 bg-red-400 rounded-lg flex items-center justify-center">
+              <span className="text-xl">⚠️</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* New vs Used Products Overview */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        {/* New Products Stats */}
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+          <div className="flex items-center justify-between mb-4">
+            <h3 className="text-lg font-semibold text-gray-900">New Mobile Phones</h3>
+            <span className="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full">
+              📱 New Stock
+            </span>
+          </div>
+          <div className="grid grid-cols-2 gap-4">
+            <div className="text-center p-4 bg-green-50 rounded-lg">
+              <p className="text-2xl font-bold text-green-600">{stats.newProducts.count}</p>
+              <p className="text-sm text-gray-600">Products</p>
+            </div>
+            <div className="text-center p-4 bg-green-50 rounded-lg">
+              <p className="text-2xl font-bold text-green-600">{stats.newProducts.stock}</p>
+              <p className="text-sm text-gray-600">Total Stock</p>
+            </div>
+            <div className="text-center p-4 bg-green-50 rounded-lg">
+              <p className="text-xl font-bold text-green-600">{formatCurrency(stats.newProducts.value)}</p>
+              <p className="text-sm text-gray-600">Investment Value</p>
+            </div>
+            <div className="text-center p-4 bg-green-50 rounded-lg">
+              <p className="text-xl font-bold text-green-600">{formatCurrency(stats.newProducts.revenue)}</p>
+              <p className="text-sm text-gray-600">Total Revenue</p>
+            </div>
+          </div>
+          {stats.newProducts.lowStock > 0 && (
+            <div className="mt-4 p-3 bg-yellow-50 border border-yellow-200 rounded-lg">
+              <p className="text-sm text-yellow-800">
+                <span className="font-medium">{stats.newProducts.lowStock}</span> new products are low in stock
+              </p>
+            </div>
+          )}
+        </div>
+
+        {/* Used Products Stats */}
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+          <div className="flex items-center justify-between mb-4">
+            <h3 className="text-lg font-semibold text-gray-900">Used Mobile Phones</h3>
+            <span className="bg-orange-100 text-orange-800 text-xs font-medium px-2.5 py-0.5 rounded-full">
+              📱 Used Stock
+            </span>
+          </div>
+          <div className="grid grid-cols-2 gap-4">
+            <div className="text-center p-4 bg-orange-50 rounded-lg">
+              <p className="text-2xl font-bold text-orange-600">{stats.usedProducts.count}</p>
+              <p className="text-sm text-gray-600">Products</p>
+            </div>
+            <div className="text-center p-4 bg-orange-50 rounded-lg">
+              <p className="text-2xl font-bold text-orange-600">{stats.usedProducts.stock}</p>
+              <p className="text-sm text-gray-600">Total Stock</p>
+            </div>
+            <div className="text-center p-4 bg-orange-50 rounded-lg">
+              <p className="text-xl font-bold text-orange-600">{formatCurrency(stats.usedProducts.value)}</p>
+              <p className="text-sm text-gray-600">Investment Value</p>
+            </div>
+            <div className="text-center p-4 bg-orange-50 rounded-lg">
+              <p className="text-xl font-bold text-orange-600">{formatCurrency(stats.usedProducts.revenue)}</p>
+              <p className="text-sm text-gray-600">Total Revenue</p>
+            </div>
+          </div>
+          {stats.usedProducts.lowStock > 0 && (
+            <div className="mt-4 p-3 bg-yellow-50 border border-yellow-200 rounded-lg">
+              <p className="text-sm text-yellow-800">
+                <span className="font-medium">{stats.usedProducts.lowStock}</span> used products are low in stock
+              </p>
+            </div>
+          )}
+        </div>
+      </div>
+
+      {/* Sales Chart and Top Products */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        {/* Sales Chart */}
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+          <h3 className="text-lg font-semibold text-gray-900 mb-4">Sales Overview (Last 7 Days)</h3>
+          <div className="space-y-4">
+            {salesChart.map((day, index) => (
+              <div key={index} className="flex items-center space-x-4">
+                <div className="w-20 text-sm text-gray-600">{day.date}</div>
+                <div className="flex-1">
+                  <div className="flex items-center space-x-2 mb-1">
+                    <div className="text-sm font-medium">{formatCurrency(day.total)}</div>
+                    <div className="text-xs text-gray-500">({day.count} sales)</div>
+                  </div>
+                  <div className="w-full bg-gray-200 rounded-full h-2">
+                    <div 
+                      className="bg-gradient-to-r from-green-500 to-orange-500 h-2 rounded-full"
+                      style={{ width: `${Math.min((day.total / Math.max(...salesChart.map(d => d.total))) * 100, 100)}%` }}
+                    ></div>
+                  </div>
+                  <div className="flex justify-between text-xs text-gray-500 mt-1">
+                    <span>📱 New: {formatCurrency(day.newPhones)}</span>
+                    <span>📱 Used: {formatCurrency(day.usedPhones)}</span>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Top Selling Products */}
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+          <div className="flex items-center justify-between mb-4">
+            <h3 className="text-lg font-semibold text-gray-900">Top Selling Products</h3>
+            <button
+              onClick={() => onNavigate("reports")}
+              className="text-blue-600 hover:text-blue-800 text-sm font-medium"
+            >
+              View Reports →
+            </button>
+          </div>
+          <div className="space-y-3">
+            {topProducts?.slice(0, 5).map((product, index) => (
+              <div key={product.productId} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                <div className="flex items-center space-x-3">
+                  <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
+                    <span className="text-xs font-bold text-blue-600">#{index + 1}</span>
+                  </div>
+                  <div>
+                    <p className="font-medium text-gray-900 text-sm">{product.productName}</p>
+                    <span className={`text-xs px-2 py-0.5 rounded-full ${
+                      product.condition === "new" 
+                        ? "bg-green-100 text-green-800" 
+                        : "bg-orange-100 text-orange-800"
+                    }`}>
+                      {product.condition}
+                    </span>
+                  </div>
+                </div>
+                <div className="text-right">
+                  <p className="font-semibold text-gray-900 text-sm">{product.quantity} sold</p>
+                  <p className="text-xs text-gray-500">{formatCurrency(product.revenue)}</p>
+                </div>
+              </div>
+            ))}
+            {(!topProducts || topProducts.length === 0) && (
+              <div className="text-center py-4">
+                <p className="text-gray-500 text-sm">No sales data available</p>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+
+      {/* Recent Activity */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        {/* Recent Sales */}
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+          <div className="flex items-center justify-between mb-4">
+            <h3 className="text-lg font-semibold text-gray-900">Recent Sales</h3>
+            <button
+              onClick={() => onNavigate("sales")}
+              className="text-red-600 hover:text-red-800 text-sm font-medium"
+            >
+              View All →
+            </button>
+          </div>
+          <div className="space-y-3">
+            {stats.recentSales.map((sale) => (
+              <div key={sale._id} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                <div>
+                  <p className="font-medium text-gray-900">#{sale.saleNumber}</p>
+                  <p className="text-sm text-gray-600">{sale.customerName || "Walk-in Customer"}</p>
+                  <div className="flex space-x-2 mt-1">
+                    {sale.items.map((item, idx) => (
+                      <span 
+                        key={idx}
+                        className={`text-xs px-2 py-1 rounded-full ${
+                          (item.condition || "new") === "new" 
+                            ? "bg-green-100 text-green-800" 
+                            : "bg-orange-100 text-orange-800"
+                        }`}
+                      >
+                        📱 {item.condition || "new"}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+                <div className="text-right">
+                  <p className="font-semibold text-gray-900">{formatCurrency(sale.total)}</p>
+                  <p className="text-xs text-gray-500">
+                    {new Date(sale._creationTime).toLocaleDateString('en-BD')}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Low Stock Products */}
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+          <div className="flex items-center justify-between mb-4">
+            <h3 className="text-lg font-semibold text-gray-900">Low Stock Alert</h3>
+            <button
+              onClick={() => onNavigate("inventory")}
+              className="text-red-600 hover:text-red-800 text-sm font-medium"
+            >
+              View Inventory →
+            </button>
+          </div>
+          <div className="space-y-3">
+            {[...stats.newProducts.lowStockProducts, ...stats.usedProducts.lowStockProducts].map((product) => (
+              <div key={product._id} className="flex items-center justify-between p-3 bg-red-50 rounded-lg border border-red-200">
+                <div>
+                  <p className="font-medium text-gray-900">{product.name}</p>
+                  <p className="text-sm text-gray-600">{product.brand}</p>
+                  <span className={`text-xs px-2 py-1 rounded-full ${
+                    product.condition === "new" 
+                      ? "bg-green-100 text-green-800" 
+                      : "bg-orange-100 text-orange-800"
+                  }`}>
+                    📱 {product.condition}
+                  </span>
+                </div>
+                <div className="text-right">
+                  <p className="font-semibold text-red-600">{product.currentStock}</p>
+                  <p className="text-xs text-gray-500">Min: {product.minStockLevel}</p>
+                </div>
+              </div>
+            ))}
+            {stats.lowStockAlerts === 0 && (
+              <div className="text-center py-4">
+                <div className="text-green-500 text-4xl mb-2">✅</div>
+                <p className="text-gray-500">All products are well stocked!</p>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
