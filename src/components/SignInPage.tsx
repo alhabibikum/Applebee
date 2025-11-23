@@ -11,8 +11,8 @@ export function SignInPage() {
       <div className="w-full max-w-md relative z-10">
         {/* Logo and Branding */}
         <div className="text-center mb-8">
-          <div className="w-24 h-24 bg-gradient-to-br from-amber-300 via-amber-400 to-amber-500 rounded-3xl flex items-center justify-center mx-auto mb-6 shadow-2xl transform hover:scale-105 transition-transform duration-300">
-            <img src="/apple-point-logo.svg" alt="Apple Point" className="w-20 h-20" />
+          <div className="w-20 h-20 bg-gradient-to-br from-amber-300 via-amber-400 to-amber-500 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-2xl transform hover:scale-105 transition-transform duration-300">
+            <img src="/apple-point-logo.svg" alt="Apple Point" className="w-16 h-16" />
           </div>
           <h1 className="text-5xl font-bold text-white mb-3">Apple Point</h1>
           <p className="text-amber-100 text-base tracking-wide">Shop Management System</p>

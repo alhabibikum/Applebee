@@ -73,8 +73,8 @@ export function MobileHeader({ activeTab, onNavigate }: MobileHeaderProps) {
                 </button>
               </div>
               <div className="flex flex-col items-center text-center">
-                <div className="w-24 h-24 bg-gradient-to-r from-amber-400 to-amber-500 rounded-xl flex items-center justify-center shadow-lg mb-3">
-                  <img src="/apple-point-logo.svg" alt="Apple Point" className="w-20 h-20" />
+                <div className="w-12 h-12 bg-gradient-to-r from-amber-400 to-amber-500 rounded-lg flex items-center justify-center shadow-lg mb-3">
+                  <img src="/apple-point-logo.svg" alt="Apple Point" className="w-10 h-10" />
                 </div>
                 <h1 className="text-xl font-bold text-white">Apple Point</h1>
                 <p className="text-xs text-amber-100 mt-1">Shop Management</p>

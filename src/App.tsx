@@ -186,8 +186,8 @@ function App() {
               <div className="w-64 bg-gradient-to-b from-teal-900 to-teal-800 shadow-2xl flex flex-col">
                 {/* Logo Section */}
                 <div className="p-6 flex flex-col items-center text-center border-b border-teal-700">
-                  <div className="w-32 h-32 bg-gradient-to-r from-amber-400 to-amber-500 rounded-2xl flex items-center justify-center shadow-xl mb-4 hover:shadow-2xl transition-shadow">
-                    <img src="/apple-point-logo.svg" alt="Apple Point" className="w-28 h-28" />
+                  <div className="w-16 h-16 bg-gradient-to-r from-amber-400 to-amber-500 rounded-lg flex items-center justify-center shadow-lg mb-4 hover:shadow-xl transition-shadow">
+                    <img src="/apple-point-logo.svg" alt="Apple Point" className="w-14 h-14" />
                   </div>
                   <h1 className="text-2xl font-bold text-white">Apple Point</h1>
                   <p className="text-xs text-amber-100 mt-1">Shop Management</p>
