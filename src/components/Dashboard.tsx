@@ -51,73 +51,73 @@ export function Dashboard({ onNavigate }: DashboardProps) {
       </div>
 
       {/* Enhanced Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
+      <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-4 md:gap-6">
         {/* Total Revenue */}
-        <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-xl p-4 sm:p-6 text-white card-hover aspect-square sm:aspect-auto flex flex-col justify-between">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-green-100 text-xs sm:text-sm font-medium">Total Revenue</p>
-              <p className="text-xl sm:text-2xl font-bold">{formatCurrency(stats.totalRevenue)}</p>
-              <div className="flex items-center space-x-2 mt-1">
+        <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-lg sm:rounded-xl p-2 sm:p-4 md:p-6 text-white card-hover flex flex-col justify-between">
+          <div className="flex items-center justify-between gap-2">
+            <div className="min-w-0 flex-1">
+              <p className="text-green-100 text-xs font-medium truncate">Revenue</p>
+              <p className="text-sm sm:text-2xl font-bold truncate">{formatCurrency(stats.totalRevenue)}</p>
+              <div className="hidden sm:flex items-center space-x-2 mt-1">
                 <p className="text-green-100 text-xs">Profit: {formatCurrency(stats.totalProfit)}</p>
                 <span className="text-green-200 text-xs">
                   ({stats.profitMargin.toFixed(1)}%)
                 </span>
               </div>
             </div>
-            <div className="w-10 h-10 sm:w-12 sm:h-12 bg-green-400 rounded-lg flex items-center justify-center flex-shrink-0">
-              <span className="text-lg sm:text-xl">💰</span>
+            <div className="w-8 h-8 sm:w-12 sm:h-12 bg-green-400 rounded-lg flex items-center justify-center flex-shrink-0">
+              <span className="text-base sm:text-xl">💰</span>
             </div>
           </div>
         </div>
 
         {/* Today's Sales */}
-        <div className="bg-gradient-to-br from-teal-500 to-teal-600 rounded-xl p-4 sm:p-6 text-white card-hover aspect-square sm:aspect-auto flex flex-col justify-between">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-teal-100 text-xs sm:text-sm font-medium">Today's Revenue</p>
-              <p className="text-xl sm:text-2xl font-bold">{formatCurrency(stats.todayRevenue)}</p>
-              <div className="flex items-center space-x-2 mt-1">
+        <div className="bg-gradient-to-br from-teal-500 to-teal-600 rounded-lg sm:rounded-xl p-2 sm:p-4 md:p-6 text-white card-hover flex flex-col justify-between">
+          <div className="flex items-center justify-between gap-2">
+            <div className="min-w-0 flex-1">
+              <p className="text-teal-100 text-xs font-medium truncate">Today</p>
+              <p className="text-sm sm:text-2xl font-bold truncate">{formatCurrency(stats.todayRevenue)}</p>
+              <div className="hidden sm:flex items-center space-x-2 mt-1">
                 <p className="text-teal-100 text-xs">{stats.todaySales} sales</p>
                 <span className="text-teal-200 text-xs">
                   Profit: {formatCurrency(stats.todayProfit)}
                 </span>
               </div>
             </div>
-            <div className="w-10 h-10 sm:w-12 sm:h-12 bg-teal-400 rounded-lg flex items-center justify-center flex-shrink-0">
-              <span className="text-lg sm:text-xl">📈</span>
+            <div className="w-8 h-8 sm:w-12 sm:h-12 bg-teal-400 rounded-lg flex items-center justify-center flex-shrink-0">
+              <span className="text-base sm:text-xl">📈</span>
             </div>
           </div>
         </div>
 
         {/* Monthly Growth */}
-        <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl p-4 sm:p-6 text-white card-hover aspect-square sm:aspect-auto flex flex-col justify-between">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-purple-100 text-xs sm:text-sm font-medium">Monthly Growth</p>
-              <p className="text-xl sm:text-2xl font-bold">
+        <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-lg sm:rounded-xl p-2 sm:p-4 md:p-6 text-white card-hover flex flex-col justify-between">
+          <div className="flex items-center justify-between gap-2">
+            <div className="min-w-0 flex-1">
+              <p className="text-purple-100 text-xs font-medium truncate">Growth</p>
+              <p className="text-sm sm:text-2xl font-bold truncate">
                 {monthlyStats ? formatPercentage(monthlyStats.growth.revenue) : '0%'}
               </p>
-              <p className="text-purple-100 text-xs mt-1">
-                Revenue vs last month
+              <p className="hidden sm:block text-purple-100 text-xs mt-1 truncate">
+                vs last month
               </p>
             </div>
-            <div className="w-10 h-10 sm:w-12 sm:h-12 bg-purple-400 rounded-lg flex items-center justify-center flex-shrink-0">
-              <span className="text-lg sm:text-xl">📊</span>
+            <div className="w-8 h-8 sm:w-12 sm:h-12 bg-purple-400 rounded-lg flex items-center justify-center flex-shrink-0">
+              <span className="text-base sm:text-xl">📊</span>
             </div>
           </div>
         </div>
 
         {/* Low Stock Alert */}
-        <div className="bg-gradient-to-br from-amber-500 to-amber-600 rounded-xl p-4 sm:p-6 text-white card-hover aspect-square sm:aspect-auto flex flex-col justify-between">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-amber-100 text-xs sm:text-sm font-medium">Low Stock Alerts</p>
-              <p className="text-xl sm:text-2xl font-bold">{stats.lowStockAlerts}</p>
-              <p className="text-amber-100 text-xs mt-1">Products need restock</p>
+        <div className="bg-gradient-to-br from-amber-500 to-amber-600 rounded-lg sm:rounded-xl p-2 sm:p-4 md:p-6 text-white card-hover flex flex-col justify-between">
+          <div className="flex items-center justify-between gap-2">
+            <div className="min-w-0 flex-1">
+              <p className="text-amber-100 text-xs font-medium truncate">Stock</p>
+              <p className="text-sm sm:text-2xl font-bold truncate">{stats.lowStockAlerts}</p>
+              <p className="hidden sm:block text-amber-100 text-xs mt-1 truncate">Restock needed</p>
             </div>
-            <div className="w-10 h-10 sm:w-12 sm:h-12 bg-amber-400 rounded-lg flex items-center justify-center flex-shrink-0">
-              <span className="text-lg sm:text-xl">⚠️</span>
+            <div className="w-8 h-8 sm:w-12 sm:h-12 bg-amber-400 rounded-lg flex items-center justify-center flex-shrink-0">
+              <span className="text-base sm:text-xl">⚠️</span>
             </div>
           </div>
         </div>

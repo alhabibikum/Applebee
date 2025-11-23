@@ -196,10 +196,11 @@ export function RegularPOS() {
       <h1 className="text-2xl font-bold mb-6">Regular POS System</h1>
       
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {/* Product List */}
-        <div className="lg:col-span-2">
+        {/* Search and Cart - Show first on mobile */}
+        <div className="lg:col-span-1 order-first lg:order-last">
+          {/* Search Filters */}
           <div className="bg-white rounded-lg shadow p-4 mb-4">
-            <div className="flex flex-col md:flex-row gap-2 mb-4">
+            <div className="flex flex-col gap-2 mb-4">
               <input
                 type="text"
                 placeholder="Search products..."
@@ -233,21 +234,9 @@ export function RegularPOS() {
               </select>
             </div>
           </div>
-          
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {availableProducts.map(product => (
-              <ProductCard 
-                key={product._id} 
-                product={product} 
-                onAddToCart={addToCart}
-                isInCart={cart.some(item => item.productId === product._id)}
-              />
-            ))}
-          </div>
-        </div>
-        
-        {/* Cart and Checkout */}
-        <div className="bg-white rounded-lg shadow p-4 h-fit">
+
+          {/* Cart and Checkout */}
+          <div className="bg-white rounded-lg shadow p-4 h-fit"
           <h2 className="text-xl font-bold mb-4">Cart ({cart.length})</h2>
           
           {cart.length === 0 ? (
@@ -403,6 +392,20 @@ export function RegularPOS() {
               </div>
             </>
           )}
+        </div>
+
+        {/* Product List - Show after cart on mobile */}
+        <div className="lg:col-span-2 order-last lg:order-first">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {availableProducts.map(product => (
+              <ProductCard 
+                key={product._id} 
+                product={product} 
+                onAddToCart={addToCart}
+                isInCart={cart.some(item => item.productId === product._id)}
+              />
+            ))}
+          </div>
         </div>
       </div>
       

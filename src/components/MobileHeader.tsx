@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { SignOutButton } from "../SignOutButton";
 
 interface MobileHeaderProps {
   activeTab: string;
@@ -82,7 +83,7 @@ export function MobileHeader({ activeTab, onNavigate }: MobileHeaderProps) {
             </div>
 
             {/* Navigation */}
-            <nav className="p-4">
+            <nav className="p-4 flex-1">
               <div className="space-y-2">
                 {menuItems.map((item) => (
                   <button
@@ -103,6 +104,11 @@ export function MobileHeader({ activeTab, onNavigate }: MobileHeaderProps) {
                 ))}
               </div>
             </nav>
+
+            {/* Logout Button */}
+            <div className="p-4 border-t border-teal-700">
+              <SignOutButton />
+            </div>
           </div>
         </div>
       )}
