@@ -59,19 +59,10 @@ export function MobileHeader({ activeTab, onNavigate }: MobileHeaderProps) {
           />
           
           {/* Sidebar */}
-          <div className="fixed left-0 top-0 bottom-0 w-80 bg-gradient-to-b from-teal-900 to-teal-800 shadow-2xl transform transition-transform duration-300 ease-in-out">
+          <div className="fixed left-0 top-0 bottom-0 w-80 bg-gradient-to-b from-teal-900 to-teal-800 shadow-2xl transform transition-transform duration-300 ease-in-out overflow-y-auto">
             {/* Header */}
-            <div className="p-6 border-b border-teal-700">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center space-x-3">
-                  <div className="w-10 h-10 bg-gradient-to-r from-amber-400 to-amber-500 rounded-lg flex items-center justify-center shadow-lg">
-                    <img src="/apple-point-logo.svg" alt="Apple Point" className="w-6 h-6" />
-                  </div>
-                  <div>
-                    <h1 className="text-xl font-bold text-white">Apple Point</h1>
-                    <p className="text-sm text-amber-100">Shop Management</p>
-                  </div>
-                </div>
+            <div className="p-6 border-b border-teal-700 sticky top-0 bg-gradient-to-b from-teal-900 to-teal-800">
+              <div className="flex items-center justify-between mb-4">
                 <button
                   onClick={() => setIsMenuOpen(false)}
                   className="p-2 rounded-lg hover:bg-teal-700 transition-colors"
@@ -80,6 +71,13 @@ export function MobileHeader({ activeTab, onNavigate }: MobileHeaderProps) {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                   </svg>
                 </button>
+              </div>
+              <div className="flex flex-col items-center text-center">
+                <div className="w-24 h-24 bg-gradient-to-r from-amber-400 to-amber-500 rounded-xl flex items-center justify-center shadow-lg mb-3">
+                  <img src="/apple-point-logo.svg" alt="Apple Point" className="w-20 h-20" />
+                </div>
+                <h1 className="text-xl font-bold text-white">Apple Point</h1>
+                <p className="text-xs text-amber-100 mt-1">Shop Management</p>
               </div>
             </div>
 

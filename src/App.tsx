@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Authenticated, Unauthenticated, useConvexAuth, useQuery, useConvex } from "convex/react";
 import { SignInPage } from "./components/SignInPage";
+import { SignOutButton } from "./SignOutButton";
 import { Dashboard } from "./components/Dashboard";
 import { OfflineInventory } from "./components/OfflineInventory";
 import { Sales } from "./components/Sales";
@@ -182,20 +183,17 @@ function App() {
           ) : (
             <div className="flex h-screen">
               {/* Desktop Sidebar */}
-              <div className="w-64 bg-gradient-to-b from-teal-900 to-teal-800 shadow-2xl">
-                <div className="p-6">
-                  <div className="flex items-center space-x-3">
-                    <div className="w-12 h-12 bg-gradient-to-r from-amber-400 to-amber-500 rounded-lg flex items-center justify-center shadow-lg">
-                      <img src="/apple-point-logo.svg" alt="Apple Point" className="w-8 h-8" />
-                    </div>
-                    <div>
-                      <h1 className="text-xl font-bold text-white">Apple Point</h1>
-                      <p className="text-sm text-amber-100">Shop Management</p>
-                    </div>
+              <div className="w-64 bg-gradient-to-b from-teal-900 to-teal-800 shadow-2xl flex flex-col">
+                {/* Logo Section */}
+                <div className="p-6 flex flex-col items-center text-center border-b border-teal-700">
+                  <div className="w-32 h-32 bg-gradient-to-r from-amber-400 to-amber-500 rounded-2xl flex items-center justify-center shadow-xl mb-4 hover:shadow-2xl transition-shadow">
+                    <img src="/apple-point-logo.svg" alt="Apple Point" className="w-28 h-28" />
                   </div>
+                  <h1 className="text-2xl font-bold text-white">Apple Point</h1>
+                  <p className="text-xs text-amber-100 mt-1">Shop Management</p>
                 </div>
 
-                <nav className="mt-6">
+                <nav className="mt-6 flex-1"
                   <div className="px-3">
                     
                     {[
@@ -223,6 +221,11 @@ function App() {
                     ))}
                   </div>
                 </nav>
+
+                {/* Logout Button at Bottom */}
+                <div className="p-4 border-t border-teal-700">
+                  <SignOutButton />
+                </div>
               </div>
 
               {/* Main Content */}
