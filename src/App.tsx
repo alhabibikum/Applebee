@@ -193,7 +193,7 @@ function App() {
                   <p className="text-xs text-amber-100 mt-1">Shop Management</p>
                 </div>
 
-                <nav className="mt-6 flex-1"
+                <nav className="mt-6 flex-1">
                   <div className="px-3">
                     
                     {[
