@@ -40,15 +40,12 @@ export function RegularPOS() {
   const createSale = useMutation(api.sales.create);
   const sellProduct = useMutation(api.products.sellProduct);
 
-  // Filter products to only show those with stock > 0
   const availableProducts = products?.filter(product => (product.currentStock || 0) > 0) || [];
 
   const addToCart = (product: any, price: number) => {
-    // Check if product is already in cart
     const existingItemIndex = cart.findIndex(item => item.productId === product._id);
     
     if (existingItemIndex >= 0) {
-      // Update existing item
       const updatedCart = [...cart];
       updatedCart[existingItemIndex] = {
         ...updatedCart[existingItemIndex],
@@ -57,7 +54,6 @@ export function RegularPOS() {
       };
       setCart(updatedCart);
     } else {
-      // Add new item
       const newItem: CartItem = {
         productId: product._id,
         name: product.name,
@@ -108,84 +104,53 @@ export function RegularPOS() {
       }
       return item;
     });
-    
     setCart(updatedCart);
   };
 
   const subtotal = cart.reduce((sum, item) => sum + item.totalPrice, 0);
-  const discountAmount = (subtotal * discount) / 100;
+  const discountAmount = subtotal * (discount / 100);
   const total = subtotal - discountAmount;
 
   const handleCheckout = async () => {
-    if (cart.length === 0) {
-      toast.error("Cart is empty");
-      return;
-    }
-
-    const customerNameToUse = isWalkingCustomer ? "Walking Customer" : customerName;
-
     if (!isWalkingCustomer && !customerName.trim()) {
       toast.error("Please enter customer name");
       return;
     }
 
     setIsProcessing(true);
-    
     try {
-      // Create sale record
       const saleData = {
-        customerName: customerNameToUse || "Walking Customer",
+        customerId: isWalkingCustomer ? undefined : customerName,
         customerPhone: customerPhone || undefined,
+        totalAmount: total,
+        discountPercentage: discount,
+        paymentMethod: paymentMethod as "cash" | "card" | "mobile_banking",
         items: cart.map(item => ({
           productId: item.productId,
           quantity: item.quantity,
           unitPrice: item.unitPrice,
-          imei: item.imei,
-        })),
-        discount: discountAmount,
-        paymentMethod,
+          totalPrice: item.totalPrice
+        }))
       };
 
-      const saleId = await createSale(saleData);
+      const sale = await createSale(saleData);
 
-      // Update product stock
-      const stockUpdatePromises = cart.map(item => 
-        sellProduct({
-          imei: item.imei,
+      for (const item of cart) {
+        await sellProduct({
+          productId: item.productId,
           quantity: item.quantity
-        }).catch(error => {
-          console.error("Error updating stock for item:", item, error);
-          // Continue with other items even if one fails
-          return Promise.resolve();
-        })
-      );
+        });
+      }
 
-      // Wait for all stock updates to complete
-      await Promise.all(stockUpdatePromises);
-
-      setLastSale({
-        _id: saleId,
-        customerName: customerNameToUse || "Walking Customer",
-        customerPhone,
-        items: [...cart],
-        subtotal,
-        discount: discountAmount,
-        total,
-        paymentMethod,
-        createdAt: Date.now()
-      });
-
-      // Reset form
+      setLastSale(sale);
+      setShowInvoice(true);
       setCart([]);
       setCustomerName("");
       setCustomerPhone("");
       setDiscount(0);
-      setShowInvoice(true);
-      
-      toast.success("Sale completed successfully");
-    } catch (error: any) {
-      console.error("Error processing sale:", error);
-      toast.error("Failed to process sale: " + (error.message || "Unknown error"));
+      toast.success("Sale completed successfully!");
+    } catch (error) {
+      toast.error("Failed to process sale");
     } finally {
       setIsProcessing(false);
     }
@@ -196,8 +161,8 @@ export function RegularPOS() {
       <h1 className="text-2xl font-bold mb-6">Regular POS System</h1>
       
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {/* Search and Cart - Show first on mobile */}
-        <div className="lg:col-span-1 order-first lg:order-last">
+        {/* Search and Cart Section */}
+        <div className="lg:col-span-1">
           {/* Search Filters */}
           <div className="bg-white rounded-lg shadow p-4 mb-4">
             <div className="flex flex-col gap-2 mb-4">
@@ -235,7 +200,7 @@ export function RegularPOS() {
             </div>
           </div>
 
-          {/* Cart and Checkout */}
+          {/* Cart */}
           <div className="bg-white rounded-lg shadow p-4 h-fit">
             <h2 className="text-xl font-bold mb-4">Cart ({cart.length})</h2>
             
@@ -244,59 +209,59 @@ export function RegularPOS() {
             ) : (
               <>
                 <div className="max-h-96 overflow-y-auto mb-4">
-                {cart.map(item => (
-                  <div key={item.productId} className="border-b py-3">
-                    <div className="flex justify-between">
-                      <div className="flex-1 min-w-0">
-                        <h3 className="font-medium truncate">{item.name}</h3>
-                        <p className="text-sm text-teal-500 truncate">IMEI: {item.imei}</p>
-                        <p className="text-sm text-teal-500">Brand: {item.brand || "N/A"}</p>
-                      </div>
-                      <button 
-                        onClick={() => removeFromCart(item.productId)}
-                        className="text-red-500 hover:text-amber-700 ml-2 flex-shrink-0"
-                      >
-                        ×
-                      </button>
-                    </div>
-                    
-                    <div className="flex flex-wrap items-center justify-between mt-2 gap-2">
-                      <div className="flex items-center">
+                  {cart.map(item => (
+                    <div key={item.productId} className="border-b py-3">
+                      <div className="flex justify-between">
+                        <div className="flex-1 min-w-0">
+                          <h3 className="font-medium truncate">{item.name}</h3>
+                          <p className="text-sm text-teal-500 truncate">IMEI: {item.imei}</p>
+                          <p className="text-sm text-teal-500">Brand: {item.brand || "N/A"}</p>
+                        </div>
                         <button 
-                          onClick={() => updateQuantity(item.productId, item.quantity - 1)}
-                          className="w-8 h-8 flex items-center justify-center border rounded-l"
+                          onClick={() => removeFromCart(item.productId)}
+                          className="text-red-500 hover:text-amber-700 ml-2 flex-shrink-0"
                         >
-                          -
-                        </button>
-                        <span className="w-10 h-8 flex items-center justify-center border-t border-b">
-                          {item.quantity}
-                        </span>
-                        <button 
-                          onClick={() => updateQuantity(item.productId, item.quantity + 1)}
-                          className="w-8 h-8 flex items-center justify-center border rounded-r"
-                        >
-                          +
+                          ×
                         </button>
                       </div>
                       
-                      <div className="flex items-center">
-                        <span className="mr-1">$</span>
-                        <input
-                          type="number"
-                          min="0"
-                          step="0.01"
-                          value={item.unitPrice}
-                          onChange={(e) => updatePrice(item.productId, parseFloat(e.target.value) || 0)}
-                          className="w-20 px-2 py-1 border rounded text-right"
-                        />
+                      <div className="flex flex-wrap items-center justify-between mt-2 gap-2">
+                        <div className="flex items-center">
+                          <button 
+                            onClick={() => updateQuantity(item.productId, item.quantity - 1)}
+                            className="w-8 h-8 flex items-center justify-center border rounded-l"
+                          >
+                            -
+                          </button>
+                          <span className="w-10 h-8 flex items-center justify-center border-t border-b">
+                            {item.quantity}
+                          </span>
+                          <button 
+                            onClick={() => updateQuantity(item.productId, item.quantity + 1)}
+                            className="w-8 h-8 flex items-center justify-center border rounded-r"
+                          >
+                            +
+                          </button>
+                        </div>
+                        
+                        <div className="flex items-center">
+                          <span className="mr-1">$</span>
+                          <input
+                            type="number"
+                            min="0"
+                            step="0.01"
+                            value={item.unitPrice}
+                            onChange={(e) => updatePrice(item.productId, parseFloat(e.target.value) || 0)}
+                            className="w-20 px-2 py-1 border rounded text-right"
+                          />
+                        </div>
+                      </div>
+                      
+                      <div className="text-right font-medium mt-1">
+                        ${(item.totalPrice).toFixed(2)}
                       </div>
                     </div>
-                    
-                    <div className="text-right font-medium mt-1">
-                      ${(item.totalPrice).toFixed(2)}
-                    </div>
-                  </div>
-                ))}
+                  ))}
                 </div>
                 
                 <div className="border-t pt-3">
@@ -393,9 +358,10 @@ export function RegularPOS() {
               </>
             )}
           </div>
+        </div>
 
-        {/* Product List - Show after cart on mobile */}
-        <div className="lg:col-span-2 order-last lg:order-first">
+        {/* Product List */}
+        <div className="lg:col-span-2">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {availableProducts.map(product => (
               <ProductCard 
@@ -421,11 +387,13 @@ export function RegularPOS() {
   );
 }
 
-function ProductCard({ product, onAddToCart, isInCart }: { 
-  product: any; 
+interface ProductCardProps {
+  product: any;
   onAddToCart: (product: any, price: number) => void;
   isInCart: boolean;
-}) {
+}
+
+function ProductCard({ product, onAddToCart, isInCart }: ProductCardProps) {
   const [price, setPrice] = useState(product.sellingPrice || product.costPrice * 1.2);
   
   return (
@@ -435,7 +403,7 @@ function ProductCard({ product, onAddToCart, isInCart }: {
         <p className="text-sm text-teal-600">Brand: {product.brand || "N/A"}</p>
         <p className="text-sm text-teal-600 truncate">IMEI: {product.imei}</p>
       </div>
-      
+
       <div className="mb-3">
         <div className="flex items-center justify-between">
           <span className="text-sm text-teal-500">Stock:</span>
@@ -446,27 +414,24 @@ function ProductCard({ product, onAddToCart, isInCart }: {
           <span className="font-medium">${product.costPrice.toFixed(2)}</span>
         </div>
       </div>
-      
+
       <div className="mb-3">
-        <label className="block text-sm font-medium mb-1">Sell Price</label>
-        <div className="flex">
-          <span className="inline-flex items-center px-3 rounded-l-md border border-r-0 border-teal-300 bg-teal-50 text-teal-500">
-            $
-          </span>
+        <label className="block text-sm font-medium mb-1">Selling Price:</label>
+        <div className="flex items-center">
+          <span className="mr-2">$</span>
           <input
             type="number"
             min="0"
             step="0.01"
             value={price}
             onChange={(e) => setPrice(parseFloat(e.target.value) || 0)}
-            className="flex-1 min-w-0 block w-full px-3 py-2 rounded-r-md border border-teal-300"
+            className="flex-1 px-2 py-1 border border-teal-300 rounded text-right"
           />
         </div>
       </div>
-      
+
       <button
         onClick={() => onAddToCart(product, price)}
-        disabled={isInCart}
         className={`w-full py-2 px-4 rounded-md ${
           isInCart 
             ? "bg-green-100 text-green-800 cursor-not-allowed" 
