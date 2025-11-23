@@ -12,10 +12,10 @@ export function SignInPage() {
         {/* Logo and Branding */}
         <div className="text-center mb-8">
           <div className="w-24 h-24 bg-gradient-to-br from-amber-300 via-amber-400 to-amber-500 rounded-3xl flex items-center justify-center mx-auto mb-6 shadow-2xl transform hover:scale-105 transition-transform duration-300">
-            <span className="text-teal-900 font-bold text-5xl">📱</span>
+            <img src="/apple-point-logo.svg" alt="Apple Point" className="w-20 h-20" />
           </div>
-          <h1 className="text-5xl font-bold text-white mb-3">CELLO CITY</h1>
-          <p className="text-amber-100 text-base tracking-wide">Mobile Shop Management System</p>
+          <h1 className="text-5xl font-bold text-white mb-3">Apple Point</h1>
+          <p className="text-amber-100 text-base tracking-wide">Shop Management System</p>
         </div>
 
         {/* Sign In Form Card */}
@@ -26,7 +26,7 @@ export function SignInPage() {
         {/* Footer */}
         <div className="text-center mt-8">
           <p className="text-amber-100/60 text-xs">
-            © 2024 Cello City. All rights reserved.
+            © 2024 Apple Point. All rights reserved.
           </p>
         </div>
       </div>

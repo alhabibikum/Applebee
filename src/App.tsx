@@ -185,12 +185,12 @@ function App() {
               <div className="w-64 bg-gradient-to-b from-teal-900 to-teal-800 shadow-2xl">
                 <div className="p-6">
                   <div className="flex items-center space-x-3">
-                    <div className="w-10 h-10 bg-gradient-to-r from-amber-400 to-amber-500 rounded-lg flex items-center justify-center shadow-lg">
-                      <span className="text-teal-900 font-bold text-xl">📱</span>
+                    <div className="w-12 h-12 bg-gradient-to-r from-amber-400 to-amber-500 rounded-lg flex items-center justify-center shadow-lg">
+                      <img src="/apple-point-logo.svg" alt="Apple Point" className="w-8 h-8" />
                     </div>
                     <div>
-                      <h1 className="text-xl font-bold text-white">Mobile Shop</h1>
-                      <p className="text-sm text-amber-100">Management System</p>
+                      <h1 className="text-xl font-bold text-white">Apple Point</h1>
+                      <p className="text-sm text-amber-100">Shop Management</p>
                     </div>
                   </div>
                 </div>
