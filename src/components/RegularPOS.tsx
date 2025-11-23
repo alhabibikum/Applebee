@@ -236,14 +236,14 @@ export function RegularPOS() {
           </div>
 
           {/* Cart and Checkout */}
-          <div className="bg-white rounded-lg shadow p-4 h-fit"
-          <h2 className="text-xl font-bold mb-4">Cart ({cart.length})</h2>
-          
-          {cart.length === 0 ? (
-            <p className="text-teal-500 text-center py-4">No items in cart</p>
-          ) : (
-            <>
-              <div className="max-h-96 overflow-y-auto mb-4">
+          <div className="bg-white rounded-lg shadow p-4 h-fit">
+            <h2 className="text-xl font-bold mb-4">Cart ({cart.length})</h2>
+            
+            {cart.length === 0 ? (
+              <p className="text-teal-500 text-center py-4">No items in cart</p>
+            ) : (
+              <>
+                <div className="max-h-96 overflow-y-auto mb-4">
                 {cart.map(item => (
                   <div key={item.productId} className="border-b py-3">
                     <div className="flex justify-between">
@@ -297,102 +297,102 @@ export function RegularPOS() {
                     </div>
                   </div>
                 ))}
-              </div>
-              
-              <div className="border-t pt-3">
-                <div className="flex flex-wrap justify-between mb-1 gap-2">
-                  <span>Subtotal:</span>
-                  <span>${subtotal.toFixed(2)}</span>
                 </div>
                 
-                <div className="flex flex-wrap justify-between mb-1 gap-2">
-                  <span>Discount:</span>
-                  <div className="flex items-center">
-                    <input
-                      type="number"
-                      min="0"
-                      max="100"
-                      value={discount}
-                      onChange={(e) => setDiscount(parseFloat(e.target.value) || 0)}
-                      className="w-16 px-1 py-1 border rounded text-right mr-1"
-                    />
-                    <span>%</span>
-                    <span className="ml-2">${discountAmount.toFixed(2)}</span>
-                  </div>
-                </div>
-                
-                <div className="flex flex-wrap justify-between font-bold text-lg mb-3 gap-2">
-                  <span>Total:</span>
-                  <span>${total.toFixed(2)}</span>
-                </div>
-                
-                <div className="mb-3">
-                  <div className="flex items-center mb-2">
-                    <input
-                      type="checkbox"
-                      id="walkingCustomer"
-                      checked={isWalkingCustomer}
-                      onChange={(e) => {
-                        setIsWalkingCustomer(e.target.checked);
-                        if (e.target.checked) {
-                          setCustomerName("");
-                        }
-                      }}
-                      className="mr-2 h-4 w-4"
-                    />
-                    <label htmlFor="walkingCustomer" className="text-sm font-medium">
-                      Walking Customer
-                    </label>
+                <div className="border-t pt-3">
+                  <div className="flex flex-wrap justify-between mb-1 gap-2">
+                    <span>Subtotal:</span>
+                    <span>${subtotal.toFixed(2)}</span>
                   </div>
                   
-                  <label className="block text-sm font-medium mb-1">
-                    {isWalkingCustomer ? "Customer Name (Optional)" : "Customer Name *"}
-                  </label>
-                  <input
-                    type="text"
-                    value={customerName}
-                    onChange={(e) => setCustomerName(e.target.value)}
-                    className="w-full px-3 py-2 border border-teal-300 rounded-md"
-                    placeholder={isWalkingCustomer ? "Optional" : "Enter customer name"}
-                    disabled={isWalkingCustomer}
-                  />
-                </div>
-                
-                <div className="mb-3">
-                  <label className="block text-sm font-medium mb-1">Customer Phone</label>
-                  <input
-                    type="text"
-                    value={customerPhone}
-                    onChange={(e) => setCustomerPhone(e.target.value)}
-                    className="w-full px-3 py-2 border border-teal-300 rounded-md"
-                    placeholder="Enter customer phone"
-                  />
-                </div>
-                
-                <div className="mb-3">
-                  <label className="block text-sm font-medium mb-1">Payment Method</label>
-                  <select
-                    value={paymentMethod}
-                    onChange={(e) => setPaymentMethod(e.target.value)}
-                    className="w-full px-3 py-2 border border-teal-300 rounded-md"
+                  <div className="flex flex-wrap justify-between mb-1 gap-2">
+                    <span>Discount:</span>
+                    <div className="flex items-center">
+                      <input
+                        type="number"
+                        min="0"
+                        max="100"
+                        value={discount}
+                        onChange={(e) => setDiscount(parseFloat(e.target.value) || 0)}
+                        className="w-16 px-1 py-1 border rounded text-right mr-1"
+                      />
+                      <span>%</span>
+                      <span className="ml-2">${discountAmount.toFixed(2)}</span>
+                    </div>
+                  </div>
+                  
+                  <div className="flex flex-wrap justify-between font-bold text-lg mb-3 gap-2">
+                    <span>Total:</span>
+                    <span>${total.toFixed(2)}</span>
+                  </div>
+                  
+                  <div className="mb-3">
+                    <div className="flex items-center mb-2">
+                      <input
+                        type="checkbox"
+                        id="walkingCustomer"
+                        checked={isWalkingCustomer}
+                        onChange={(e) => {
+                          setIsWalkingCustomer(e.target.checked);
+                          if (e.target.checked) {
+                            setCustomerName("");
+                          }
+                        }}
+                        className="mr-2 h-4 w-4"
+                      />
+                      <label htmlFor="walkingCustomer" className="text-sm font-medium">
+                        Walking Customer
+                      </label>
+                    </div>
+                    
+                    <label className="block text-sm font-medium mb-1">
+                      {isWalkingCustomer ? "Customer Name (Optional)" : "Customer Name *"}
+                    </label>
+                    <input
+                      type="text"
+                      value={customerName}
+                      onChange={(e) => setCustomerName(e.target.value)}
+                      className="w-full px-3 py-2 border border-teal-300 rounded-md"
+                      placeholder={isWalkingCustomer ? "Optional" : "Enter customer name"}
+                      disabled={isWalkingCustomer}
+                    />
+                  </div>
+                  
+                  <div className="mb-3">
+                    <label className="block text-sm font-medium mb-1">Customer Phone</label>
+                    <input
+                      type="text"
+                      value={customerPhone}
+                      onChange={(e) => setCustomerPhone(e.target.value)}
+                      className="w-full px-3 py-2 border border-teal-300 rounded-md"
+                      placeholder="Enter customer phone"
+                    />
+                  </div>
+                  
+                  <div className="mb-3">
+                    <label className="block text-sm font-medium mb-1">Payment Method</label>
+                    <select
+                      value={paymentMethod}
+                      onChange={(e) => setPaymentMethod(e.target.value)}
+                      className="w-full px-3 py-2 border border-teal-300 rounded-md"
+                    >
+                      <option value="cash">Cash</option>
+                      <option value="card">Card</option>
+                      <option value="mobile_banking">Mobile Banking</option>
+                    </select>
+                  </div>
+                  
+                  <button
+                    onClick={handleCheckout}
+                    disabled={isProcessing}
+                    className="w-full bg-amber-600 text-white py-2 rounded-md hover:bg-amber-700 disabled:opacity-50"
                   >
-                    <option value="cash">Cash</option>
-                    <option value="card">Card</option>
-                    <option value="mobile_banking">Mobile Banking</option>
-                  </select>
+                    {isProcessing ? "Processing..." : "Complete Sale"}
+                  </button>
                 </div>
-                
-                <button
-                  onClick={handleCheckout}
-                  disabled={isProcessing}
-                  className="w-full bg-amber-600 text-white py-2 rounded-md hover:bg-amber-700 disabled:opacity-50"
-                >
-                  {isProcessing ? "Processing..." : "Complete Sale"}
-                </button>
-              </div>
-            </>
-          )}
-        </div>
+              </>
+            )}
+          </div>
 
         {/* Product List - Show after cart on mobile */}
         <div className="lg:col-span-2 order-last lg:order-first">
