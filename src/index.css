@@ -69,10 +69,10 @@ img {
 
 @keyframes pulse-glow {
   0%, 100% {
-    box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4);
+    box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.4);
   }
   50% {
-    box-shadow: 0 0 0 10px rgba(239, 68, 68, 0);
+    box-shadow: 0 0 0 10px rgba(245, 158, 11, 0);
   }
 }
 
@@ -107,8 +107,8 @@ img {
 /* Grid pattern for background */
 .bg-grid-pattern {
   background-image: 
-    linear-gradient(rgba(239, 68, 68, 0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(239, 68, 68, 0.05) 1px, transparent 1px);
+    linear-gradient(rgba(139, 92, 246, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(139, 92, 246, 0.05) 1px, transparent 1px);
   background-size: 20px 20px;
 }
 
@@ -124,12 +124,12 @@ img {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(to bottom, #dc2626, #b91c1c);
+  background: linear-gradient(to bottom, #f59e0b, #f97316);
   border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(to bottom, #b91c1c, #991b1b);
+  background: linear-gradient(to bottom, #f97316, #ea580c);
 }
 
 /* Mobile optimizations */
@@ -141,7 +141,7 @@ img {
 
 /* Enhanced button styles - optimized */
 .btn-primary {
-  @apply bg-gradient-to-r from-red-600 to-red-700 text-white font-semibold py-3 px-6 rounded-xl hover:from-red-700 hover:to-red-800 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition-all duration-200 transform hover:scale-[1.02] shadow-lg;
+  @apply bg-gradient-to-r from-amber-400 to-amber-500 text-teal-900 font-semibold py-3 px-6 rounded-xl hover:from-amber-500 hover:to-amber-600 focus:outline-none focus:ring-2 focus:ring-amber-400 focus:ring-offset-2 transition-all duration-200 transform hover:scale-[1.02] shadow-lg;
   will-change: transform;
 }
 
@@ -151,7 +151,7 @@ img {
 
 /* Enhanced form inputs - mobile optimized */
 .form-input {
-  @apply w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all duration-200 bg-gray-50 focus:bg-white shadow-sm;
+  @apply w-full px-4 py-3 border border-teal-200 rounded-xl focus:ring-2 focus:ring-amber-400 focus:border-transparent transition-all duration-200 bg-teal-50/50 focus:bg-white shadow-sm text-teal-900 placeholder-teal-400;
   -webkit-appearance: none;
   appearance: none;
 }
@@ -175,41 +175,41 @@ img {
 
 /* Loading states - GPU accelerated */
 .loading-spinner {
-  @apply animate-spin rounded-full border-b-2 border-red-600;
+  @apply animate-spin rounded-full border-b-2 border-amber-500;
   will-change: transform;
 }
 
 /* Auth form styles - mobile first */
 .auth-input-field {
-  @apply w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all duration-200 bg-gray-50 focus:bg-white text-sm shadow-sm;
+  @apply w-full px-4 py-3 border border-teal-200 rounded-xl focus:ring-2 focus:ring-amber-400 focus:border-transparent transition-all duration-200 bg-teal-50/50 focus:bg-white text-sm shadow-sm text-teal-900 placeholder-teal-400;
   -webkit-appearance: none;
   appearance: none;
 }
 
 .auth-button {
-  @apply w-full bg-gradient-to-r from-red-600 to-red-700 text-white font-semibold py-3 px-4 rounded-xl hover:from-red-700 hover:to-red-800 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition-all duration-200 transform hover:scale-[1.02] shadow-lg text-sm;
+  @apply w-full bg-gradient-to-r from-amber-400 to-amber-500 text-teal-900 font-semibold py-3 px-4 rounded-xl hover:from-amber-500 hover:to-amber-600 focus:outline-none focus:ring-2 focus:ring-amber-400 focus:ring-offset-2 transition-all duration-200 transform hover:scale-[1.02] shadow-lg text-sm;
   will-change: transform;
 }
 
 /* Color variables */
 .bg-background {
-  @apply bg-gray-50;
+  @apply bg-teal-50;
 }
 
 .text-foreground {
-  @apply text-gray-900;
+  @apply text-teal-900;
 }
 
 .text-primary {
-  @apply text-red-600;
+  @apply text-amber-500;
 }
 
 .text-primary-hover {
-  @apply text-red-700;
+  @apply text-amber-600;
 }
 
 .text-secondary {
-  @apply text-gray-600;
+  @apply text-teal-200;
 }
 
 /* Enhanced responsive text sizes */
