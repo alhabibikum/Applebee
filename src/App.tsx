@@ -25,7 +25,6 @@ function App() {
   const [useLocalPOS, setUseLocalPOS] = useState(false);
   const { isAuthenticated } = useConvexAuth();
   const convex = useConvex();
-  const [showSyncStatus, setShowSyncStatus] = useState(false);
 
   // Initialize local database and sync manager
   useEffect(() => {
@@ -150,32 +149,16 @@ function App() {
           <OfflineIndicator />
           
           {/* Sync Status - Show on desktop */}
-          {!isMobile && (
-            <div 
-              className="fixed top-4 right-4 z-40"
-              onMouseEnter={() => setShowSyncStatus(true)}
-              onMouseLeave={() => setShowSyncStatus(false)}
-            >
-              <div className={showSyncStatus ? "block" : "hidden"}>
-                <SyncStatus />
-              </div>
+          {!isMobile && showSyncStatus && (
+            <div className="fixed top-4 right-4 z-40">
+              <SyncStatus />
             </div>
           )}
           
           {isMobile ? (
             <>
-              <MobileHeader activeTab={activeTab} onNavigate={setActiveTab} />
+              <MobileHeader activeSection={activeTab} onNavigate={setActiveTab} />
               <div className="pb-20">
-                {/* Mobile Sync Status */}
-                <div 
-                  className="p-4 bg-white border-b"
-                  onMouseEnter={() => setShowSyncStatus(true)}
-                  onMouseLeave={() => setShowSyncStatus(false)}
-                >
-                  <div className={showSyncStatus ? "block" : "hidden"}>
-                    <SyncStatus />
-                  </div>
-                </div>
                 {renderContent()}
               </div>
               <MobileBottomNav activeSection={activeTab} onNavigate={setActiveTab} />
