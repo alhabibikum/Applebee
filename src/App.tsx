@@ -14,7 +14,6 @@ import { MobileBottomNav } from "./components/MobileBottomNav";
 import { MobileHeader } from "./components/MobileHeader";
 import { OfflineIndicator } from "./components/OfflineIndicator";
 import { offlineManager } from "./lib/offlineManager";
-import { SyncStatus } from "./components/SyncStatus";
 import { syncManager } from "./lib/syncManager";
 import { localDB } from "./lib/localDatabase";
 import { api } from "../convex/_generated/api";
@@ -147,13 +146,6 @@ function App() {
       <Authenticated>
         <div className="min-h-screen bg-gradient-to-br from-teal-50 via-white to-amber-50">
           <OfflineIndicator />
-          
-          {/* Sync Status - Show on desktop */}
-          {!isMobile && showSyncStatus && (
-            <div className="fixed top-4 right-4 z-40">
-              <SyncStatus />
-            </div>
-          )}
           
           {isMobile ? (
             <>
