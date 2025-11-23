@@ -11,7 +11,7 @@ export function MobileBottomNav({ activeSection, onNavigate }: MobileBottomNavPr
 
   const navItems = [
     { id: "dashboard", name: "Home", icon: "🏠" },
-    { id: "pos", name: "POS", icon: "🛒" },
+    { id: "regular-pos", name: "POS", icon: "🛒" },
     { id: "inventory", name: "Stock", icon: "📦" },
     { id: "settings", name: "Settings", icon: "⚙️" },
   ];

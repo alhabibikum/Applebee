@@ -193,8 +193,8 @@ function App() {
                   <p className="text-xs text-amber-100 mt-1">Shop Management</p>
                 </div>
 
-                <nav className="mt-6 flex-1">
-                  <div className="px-3">
+                <nav className="mt-4 flex-1 overflow-y-auto">
+                  <div className="px-2">
                     
                     {[
                       { id: "dashboard", label: "Dashboard", icon: "📊" },
@@ -209,13 +209,13 @@ function App() {
                       <button
                         key={item.id}
                         onClick={() => setActiveTab(item.id)}
-                        className={`w-full flex items-center space-x-3 px-4 py-3 text-left rounded-lg mb-1 transition-all duration-200 ${
+                        className={`w-full flex items-center space-x-2 px-3 py-2 text-left rounded-md mb-0.5 transition-all duration-200 text-sm ${
                           activeTab === item.id
                             ? "bg-gradient-to-r from-amber-400 to-amber-500 text-teal-900 font-semibold shadow-lg"
                             : "text-amber-100 hover:bg-teal-700/50"
                         }`}
                       >
-                        <span className="text-xl">{item.icon}</span>
+                        <span className="text-lg">{item.icon}</span>
                         <span className="font-medium">{item.label}</span>
                       </button>
                     ))}
@@ -223,11 +223,10 @@ function App() {
                 </nav>
 
                 {/* Logout Button at Bottom */}
-                <div className="p-4 border-t border-teal-700">
+                <div className="p-3 border-t border-teal-700">
                   <SignOutButton />
                 </div>
               </div>
-
               {/* Main Content */}
               <div className="flex-1 overflow-auto">
                 <div className="p-6">

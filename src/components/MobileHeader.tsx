@@ -11,7 +11,7 @@ export function MobileHeader({ activeTab, onNavigate }: MobileHeaderProps) {
   const menuItems = [
     { id: "dashboard", label: "Dashboard", icon: "📊" },
     { id: "inventory", label: "Inventory", icon: "📦" },
-    { id: "pos", label: "Point of Sale", icon: "💳" },
+    { id: "regular-pos", label: "Regular POS", icon: "🛒" },
     { id: "sales", label: "Sales", icon: "💰" },
     { id: "customers", label: "Customers", icon: "👥" },
     { id: "suppliers", label: "Suppliers", icon: "🏢" },
