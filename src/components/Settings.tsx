@@ -43,8 +43,8 @@ export function Settings() {
     <div className="space-y-6">
       {/* Header */}
       <div className="text-center lg:text-left">
-        <h1 className="text-2xl lg:text-3xl font-bold text-gray-900">Settings</h1>
-        <p className="text-gray-600 mt-2">Manage your application settings and preferences</p>
+        <h1 className="text-2xl lg:text-3xl font-bold text-teal-900">Settings</h1>
+        <p className="text-teal-600 mt-2">Manage your application settings and preferences</p>
       </div>
 
       {/* Mobile Card Layout */}
@@ -56,20 +56,20 @@ export function Settings() {
               onClick={() => setActiveTab(tab.id)}
               className={`p-4 rounded-xl border-2 transition-all duration-200 text-left ${
                 activeTab === tab.id
-                  ? "border-red-500 bg-red-50 shadow-md"
-                  : "border-gray-200 bg-white hover:border-gray-300 hover:shadow-sm"
+                  ? "border-amber-400 bg-amber-50 shadow-md"
+                  : "border-teal-200 bg-white hover:border-teal-300 hover:shadow-sm"
               }`}
             >
               <div className="flex items-center space-x-3 mb-2">
                 <span className="text-2xl">{tab.icon}</span>
                 <span className={`font-semibold ${
-                  activeTab === tab.id ? "text-red-700" : "text-gray-900"
+                  activeTab === tab.id ? "text-amber-700" : "text-teal-900"
                 }`}>
                   {tab.name}
                 </span>
               </div>
               <p className={`text-sm ${
-                activeTab === tab.id ? "text-red-600" : "text-gray-500"
+                activeTab === tab.id ? "text-amber-600" : "text-teal-500"
               }`}>
                 {tab.description}
               </p>
@@ -78,16 +78,16 @@ export function Settings() {
         </div>
 
         {/* Mobile Content */}
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4 sm:p-6">
+        <div className="bg-white rounded-xl shadow-sm border border-teal-200 p-4 sm:p-6">
           {renderTabContent()}
         </div>
       </div>
 
       {/* Desktop Layout */}
       <div className="hidden lg:block">
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200">
+        <div className="bg-white rounded-xl shadow-sm border border-teal-200">
           {/* Desktop Tabs */}
-          <div className="border-b border-gray-200">
+          <div className="border-b border-teal-200">
             <nav className="flex space-x-8 px-6 overflow-x-auto" aria-label="Tabs">
               {tabs.map((tab) => (
                 <button
@@ -95,8 +95,8 @@ export function Settings() {
                   onClick={() => setActiveTab(tab.id)}
                   className={`py-4 px-1 border-b-2 font-medium text-sm transition-colors whitespace-nowrap ${
                     activeTab === tab.id
-                      ? "border-red-500 text-red-600"
-                      : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300"
+                      ? "border-amber-400 text-amber-600"
+                      : "border-transparent text-teal-500 hover:text-teal-700 hover:border-teal-300"
                   }`}
                 >
                   <span className="mr-2">{tab.icon}</span>
@@ -148,14 +148,14 @@ function GeneralSettings() {
             <span className="text-blue-600 text-2xl">🏢</span>
           </div>
           <div>
-            <h3 className="text-lg font-semibold text-gray-900">Company Information</h3>
-            <p className="text-sm text-gray-600">Basic company details and contact information</p>
+            <h3 className="text-lg font-semibold text-teal-900">Company Information</h3>
+            <p className="text-sm text-teal-600">Basic company details and contact information</p>
           </div>
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-medium text-teal-700 mb-2">
               Company Name
             </label>
             <input
@@ -167,7 +167,7 @@ function GeneralSettings() {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-medium text-teal-700 mb-2">
               Phone Number
             </label>
             <input
@@ -179,7 +179,7 @@ function GeneralSettings() {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-medium text-teal-700 mb-2">
               Email Address
             </label>
             <input
@@ -191,7 +191,7 @@ function GeneralSettings() {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-medium text-teal-700 mb-2">
               Currency
             </label>
             <select
@@ -207,7 +207,7 @@ function GeneralSettings() {
           </div>
 
           <div className="md:col-span-2">
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-medium text-teal-700 mb-2">
               Address
             </label>
             <textarea
@@ -227,14 +227,14 @@ function GeneralSettings() {
             <span className="text-green-600 text-2xl">💼</span>
           </div>
           <div>
-            <h3 className="text-lg font-semibold text-gray-900">Business Settings</h3>
-            <p className="text-sm text-gray-600">Configure tax rates and inventory thresholds</p>
+            <h3 className="text-lg font-semibold text-teal-900">Business Settings</h3>
+            <p className="text-sm text-teal-600">Configure tax rates and inventory thresholds</p>
           </div>
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-medium text-teal-700 mb-2">
               Default Tax Rate (%)
             </label>
             <input
@@ -247,7 +247,7 @@ function GeneralSettings() {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-medium text-teal-700 mb-2">
               Low Stock Threshold
             </label>
             <input
@@ -304,39 +304,39 @@ function SecuritySettings() {
       {/* Password Policy Card */}
       <div className="bg-gradient-to-r from-red-50 to-pink-50 rounded-xl p-6 border border-red-200">
         <div className="flex items-center mb-4">
-          <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mr-4">
-            <span className="text-red-600 text-2xl">🔐</span>
+          <div className="w-12 h-12 bg-amber-100 rounded-lg flex items-center justify-center mr-4">
+            <span className="text-amber-600 text-2xl">🔐</span>
           </div>
           <div>
-            <h3 className="text-lg font-semibold text-gray-900">Password Policy</h3>
-            <p className="text-sm text-gray-600">Configure password requirements for user accounts</p>
+            <h3 className="text-lg font-semibold text-teal-900">Password Policy</h3>
+            <p className="text-sm text-teal-600">Configure password requirements for user accounts</p>
           </div>
         </div>
         
         <div className="space-y-4">
           <label className="flex items-center justify-between">
-            <span className="text-sm text-gray-700">Minimum 8 characters</span>
+            <span className="text-sm text-teal-700">Minimum 8 characters</span>
             <input 
               type="checkbox" 
-              className="w-4 h-4 text-red-600 border-gray-300 rounded focus:ring-red-500" 
+              className="w-4 h-4 text-amber-600 border-teal-300 rounded focus:ring-amber-400" 
               checked={settings.minPasswordLength}
               onChange={(e) => setSettings(prev => ({ ...prev, minPasswordLength: e.target.checked }))}
             />
           </label>
           <label className="flex items-center justify-between">
-            <span className="text-sm text-gray-700">Require uppercase and lowercase letters</span>
+            <span className="text-sm text-teal-700">Require uppercase and lowercase letters</span>
             <input 
               type="checkbox" 
-              className="w-4 h-4 text-red-600 border-gray-300 rounded focus:ring-red-500" 
+              className="w-4 h-4 text-amber-600 border-teal-300 rounded focus:ring-amber-400" 
               checked={settings.requireMixedCase}
               onChange={(e) => setSettings(prev => ({ ...prev, requireMixedCase: e.target.checked }))}
             />
           </label>
           <label className="flex items-center justify-between">
-            <span className="text-sm text-gray-700">Require special characters</span>
+            <span className="text-sm text-teal-700">Require special characters</span>
             <input 
               type="checkbox" 
-              className="w-4 h-4 text-red-600 border-gray-300 rounded focus:ring-red-500" 
+              className="w-4 h-4 text-amber-600 border-teal-300 rounded focus:ring-amber-400" 
               checked={settings.requireSpecialChars}
               onChange={(e) => setSettings(prev => ({ ...prev, requireSpecialChars: e.target.checked }))}
             />
@@ -351,14 +351,14 @@ function SecuritySettings() {
             <span className="text-purple-600 text-2xl">⏱️</span>
           </div>
           <div>
-            <h3 className="text-lg font-semibold text-gray-900">Session Management</h3>
-            <p className="text-sm text-gray-600">Control user session timeouts and login attempts</p>
+            <h3 className="text-lg font-semibold text-teal-900">Session Management</h3>
+            <p className="text-sm text-teal-600">Control user session timeouts and login attempts</p>
           </div>
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-medium text-teal-700 mb-2">
               Session Timeout (minutes)
             </label>
             <input 
@@ -369,7 +369,7 @@ function SecuritySettings() {
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-medium text-teal-700 mb-2">
               Max Login Attempts
             </label>
             <input 
@@ -430,35 +430,35 @@ function NotificationSettings() {
             <span className="text-yellow-600 text-2xl">📧</span>
           </div>
           <div>
-            <h3 className="text-lg font-semibold text-gray-900">Email Notifications</h3>
-            <p className="text-sm text-gray-600">Configure which events trigger email notifications</p>
+            <h3 className="text-lg font-semibold text-teal-900">Email Notifications</h3>
+            <p className="text-sm text-teal-600">Configure which events trigger email notifications</p>
           </div>
         </div>
         
         <div className="space-y-4">
           <label className="flex items-center justify-between">
-            <span className="text-sm text-gray-700">Low stock alerts</span>
+            <span className="text-sm text-teal-700">Low stock alerts</span>
             <input 
               type="checkbox" 
-              className="w-4 h-4 text-red-600 border-gray-300 rounded focus:ring-red-500" 
+              className="w-4 h-4 text-amber-600 border-teal-300 rounded focus:ring-amber-400" 
               checked={settings.lowStockAlerts}
               onChange={(e) => setSettings(prev => ({ ...prev, lowStockAlerts: e.target.checked }))}
             />
           </label>
           <label className="flex items-center justify-between">
-            <span className="text-sm text-gray-700">Daily sales reports</span>
+            <span className="text-sm text-teal-700">Daily sales reports</span>
             <input 
               type="checkbox" 
-              className="w-4 h-4 text-red-600 border-gray-300 rounded focus:ring-red-500" 
+              className="w-4 h-4 text-amber-600 border-teal-300 rounded focus:ring-amber-400" 
               checked={settings.dailySalesReports}
               onChange={(e) => setSettings(prev => ({ ...prev, dailySalesReports: e.target.checked }))}
             />
           </label>
           <label className="flex items-center justify-between">
-            <span className="text-sm text-gray-700">New user registrations</span>
+            <span className="text-sm text-teal-700">New user registrations</span>
             <input 
               type="checkbox" 
-              className="w-4 h-4 text-red-600 border-gray-300 rounded focus:ring-red-500" 
+              className="w-4 h-4 text-amber-600 border-teal-300 rounded focus:ring-amber-400" 
               checked={settings.newUserRegistrations}
               onChange={(e) => setSettings(prev => ({ ...prev, newUserRegistrations: e.target.checked }))}
             />
@@ -473,26 +473,26 @@ function NotificationSettings() {
             <span className="text-cyan-600 text-2xl">🔔</span>
           </div>
           <div>
-            <h3 className="text-lg font-semibold text-gray-900">System Notifications</h3>
-            <p className="text-sm text-gray-600">System-level notification preferences</p>
+            <h3 className="text-lg font-semibold text-teal-900">System Notifications</h3>
+            <p className="text-sm text-teal-600">System-level notification preferences</p>
           </div>
         </div>
         
         <div className="space-y-4">
           <label className="flex items-center justify-between">
-            <span className="text-sm text-gray-700">System maintenance alerts</span>
+            <span className="text-sm text-teal-700">System maintenance alerts</span>
             <input 
               type="checkbox" 
-              className="w-4 h-4 text-red-600 border-gray-300 rounded focus:ring-red-500" 
+              className="w-4 h-4 text-amber-600 border-teal-300 rounded focus:ring-amber-400" 
               checked={settings.systemMaintenance}
               onChange={(e) => setSettings(prev => ({ ...prev, systemMaintenance: e.target.checked }))}
             />
           </label>
           <label className="flex items-center justify-between">
-            <span className="text-sm text-gray-700">Backup completion notifications</span>
+            <span className="text-sm text-teal-700">Backup completion notifications</span>
             <input 
               type="checkbox" 
-              className="w-4 h-4 text-red-600 border-gray-300 rounded focus:ring-red-500" 
+              className="w-4 h-4 text-amber-600 border-teal-300 rounded focus:ring-amber-400" 
               checked={settings.backupCompletion}
               onChange={(e) => setSettings(prev => ({ ...prev, backupCompletion: e.target.checked }))}
             />
@@ -710,8 +710,8 @@ function EnhancedBackupSettings() {
             <span className="text-indigo-600 text-2xl">⚙️</span>
           </div>
           <div>
-            <h3 className="text-lg font-semibold text-gray-900">Backup Configuration</h3>
-            <p className="text-sm text-gray-600">Configure what data to include in backups</p>
+            <h3 className="text-lg font-semibold text-teal-900">Backup Configuration</h3>
+            <p className="text-sm text-teal-600">Configure what data to include in backups</p>
           </div>
         </div>
         
@@ -719,81 +719,81 @@ function EnhancedBackupSettings() {
           <label className="flex items-center space-x-2">
             <input 
               type="checkbox" 
-              className="w-4 h-4 text-red-600 border-gray-300 rounded focus:ring-red-500" 
+              className="w-4 h-4 text-amber-600 border-teal-300 rounded focus:ring-amber-400" 
               checked={settings.includeProducts}
               onChange={(e) => setSettings(prev => ({ ...prev, includeProducts: e.target.checked }))}
             />
-            <span className="text-sm text-gray-700">Products ({products?.length || 0})</span>
+            <span className="text-sm text-teal-700">Products ({products?.length || 0})</span>
           </label>
           
           <label className="flex items-center space-x-2">
             <input 
               type="checkbox" 
-              className="w-4 h-4 text-red-600 border-gray-300 rounded focus:ring-red-500" 
+              className="w-4 h-4 text-amber-600 border-teal-300 rounded focus:ring-amber-400" 
               checked={settings.includeCategories}
               onChange={(e) => setSettings(prev => ({ ...prev, includeCategories: e.target.checked }))}
             />
-            <span className="text-sm text-gray-700">Categories ({categories?.length || 0})</span>
+            <span className="text-sm text-teal-700">Categories ({categories?.length || 0})</span>
           </label>
           
           <label className="flex items-center space-x-2">
             <input 
               type="checkbox" 
-              className="w-4 h-4 text-red-600 border-gray-300 rounded focus:ring-red-500" 
+              className="w-4 h-4 text-amber-600 border-teal-300 rounded focus:ring-amber-400" 
               checked={settings.includeCustomers}
               onChange={(e) => setSettings(prev => ({ ...prev, includeCustomers: e.target.checked }))}
             />
-            <span className="text-sm text-gray-700">Customers ({customers?.length || 0})</span>
+            <span className="text-sm text-teal-700">Customers ({customers?.length || 0})</span>
           </label>
           
           <label className="flex items-center space-x-2">
             <input 
               type="checkbox" 
-              className="w-4 h-4 text-red-600 border-gray-300 rounded focus:ring-red-500" 
+              className="w-4 h-4 text-amber-600 border-teal-300 rounded focus:ring-amber-400" 
               checked={settings.includeSales}
               onChange={(e) => setSettings(prev => ({ ...prev, includeSales: e.target.checked }))}
             />
-            <span className="text-sm text-gray-700">Sales ({sales?.length || 0})</span>
+            <span className="text-sm text-teal-700">Sales ({sales?.length || 0})</span>
           </label>
           
           <label className="flex items-center space-x-2">
             <input 
               type="checkbox" 
-              className="w-4 h-4 text-red-600 border-gray-300 rounded focus:ring-red-500" 
+              className="w-4 h-4 text-amber-600 border-teal-300 rounded focus:ring-amber-400" 
               checked={settings.includePurchases}
               onChange={(e) => setSettings(prev => ({ ...prev, includePurchases: e.target.checked }))}
             />
-            <span className="text-sm text-gray-700">Purchases ({purchases?.length || 0})</span>
+            <span className="text-sm text-teal-700">Purchases ({purchases?.length || 0})</span>
           </label>
           
           <label className="flex items-center space-x-2">
             <input 
               type="checkbox" 
-              className="w-4 h-4 text-red-600 border-gray-300 rounded focus:ring-red-500" 
+              className="w-4 h-4 text-amber-600 border-teal-300 rounded focus:ring-amber-400" 
               checked={settings.includeSuppliers}
               onChange={(e) => setSettings(prev => ({ ...prev, includeSuppliers: e.target.checked }))}
             />
-            <span className="text-sm text-gray-700">Suppliers ({suppliers?.length || 0})</span>
+            <span className="text-sm text-teal-700">Suppliers ({suppliers?.length || 0})</span>
           </label>
           
           <label className="flex items-center space-x-2">
             <input 
               type="checkbox" 
-              className="w-4 h-4 text-red-600 border-gray-300 rounded focus:ring-red-500" 
+              className="w-4 h-4 text-amber-600 border-teal-300 rounded focus:ring-amber-400" 
               checked={settings.includeUsers}
               onChange={(e) => setSettings(prev => ({ ...prev, includeUsers: e.target.checked }))}
             />
-            <span className="text-sm text-gray-700">Users ({users?.length || 0})</span>
+            <span className="text-sm text-teal-700">Users ({users?.length || 0})</span>
           </label>
           
           <label className="flex items-center space-x-2">
             <input 
               type="checkbox" 
-              className="w-4 h-4 text-red-600 border-gray-300 rounded focus:ring-red-500" 
+              className="w-4 h-4 text-amber-600 border-teal-300 rounded focus:ring-amber-400" 
               checked={settings.includeStockMovements}
               onChange={(e) => setSettings(prev => ({ ...prev, includeStockMovements: e.target.checked }))}
             />
-            <span className="text-sm text-gray-700">Stock History (0)</span>
+            <span className="text-sm text-teal-700">Stock History (0)</span>
           </label>
         </div>
 
@@ -801,16 +801,16 @@ function EnhancedBackupSettings() {
           <label className="flex items-center space-x-3">
             <input 
               type="checkbox" 
-              className="w-4 h-4 text-red-600 border-gray-300 rounded focus:ring-red-500" 
+              className="w-4 h-4 text-amber-600 border-teal-300 rounded focus:ring-amber-400" 
               checked={settings.autoBackup}
               onChange={(e) => setSettings(prev => ({ ...prev, autoBackup: e.target.checked }))}
             />
-            <span className="text-sm text-gray-700">Enable automatic backups</span>
+            <span className="text-sm text-teal-700">Enable automatic backups</span>
           </label>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-teal-700 mb-2">
                 Backup Frequency
               </label>
               <select 
@@ -824,7 +824,7 @@ function EnhancedBackupSettings() {
               </select>
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-teal-700 mb-2">
                 Backup Time
               </label>
               <input 
@@ -845,14 +845,14 @@ function EnhancedBackupSettings() {
             <span className="text-green-600 text-2xl">💾</span>
           </div>
           <div>
-            <h3 className="text-lg font-semibold text-gray-900">Manual Backup</h3>
-            <p className="text-sm text-gray-600">Create and download comprehensive backups on demand</p>
+            <h3 className="text-lg font-semibold text-teal-900">Manual Backup</h3>
+            <p className="text-sm text-teal-600">Create and download comprehensive backups on demand</p>
           </div>
         </div>
         
         {isCreatingBackup && (
           <div className="mb-4">
-            <div className="flex justify-between text-sm text-gray-600 mb-2">
+            <div className="flex justify-between text-sm text-teal-600 mb-2">
               <span>Creating backup...</span>
               <span>{backupProgress}%</span>
             </div>
@@ -902,14 +902,14 @@ function EnhancedBackupSettings() {
             <span className="text-orange-600 text-2xl">📁</span>
           </div>
           <div>
-            <h3 className="text-lg font-semibold text-gray-900">Enhanced Restore System</h3>
-            <p className="text-sm text-gray-600">Restore your complete database from a backup file with preview</p>
+            <h3 className="text-lg font-semibold text-teal-900">Enhanced Restore System</h3>
+            <p className="text-sm text-teal-600">Restore your complete database from a backup file with preview</p>
           </div>
         </div>
         
         {isRestoring && (
           <div className="mb-4">
-            <div className="flex justify-between text-sm text-gray-600 mb-2">
+            <div className="flex justify-between text-sm text-teal-600 mb-2">
               <span>Restoring data...</span>
               <span>{restoreProgress}%</span>
             </div>
@@ -923,9 +923,9 @@ function EnhancedBackupSettings() {
         )}
         
         <div className="space-y-4">
-          <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center">
+          <div className="border-2 border-dashed border-teal-300 rounded-lg p-6 text-center">
             <span className="text-4xl mb-4 block">📁</span>
-            <p className="text-gray-600 mb-4">
+            <p className="text-teal-600 mb-4">
               {selectedFile ? `Selected: ${selectedFile.name}` : "Select a backup file to restore complete database"}
             </p>
             <input 
@@ -986,7 +986,7 @@ function EnhancedBackupSettings() {
               <button 
                 onClick={handleRestore}
                 disabled={isRestoring}
-                className="btn-primary bg-red-600 hover:bg-red-700 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="btn-primary bg-amber-600 hover:bg-amber-700 disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {isRestoring ? (
                   <span className="flex items-center">

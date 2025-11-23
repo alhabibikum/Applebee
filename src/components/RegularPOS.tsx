@@ -203,12 +203,12 @@ export function RegularPOS() {
               <input
                 type="text"
                 placeholder="Search products..."
-                className="flex-1 px-3 py-2 border border-gray-300 rounded-md"
+                className="flex-1 px-3 py-2 border border-teal-300 rounded-md"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
               <select
-                className="px-3 py-2 border border-gray-300 rounded-md"
+                className="px-3 py-2 border border-teal-300 rounded-md"
                 value={selectedCategory}
                 onChange={(e) => setSelectedCategory(e.target.value as Id<"categories"> | "all")}
               >
@@ -220,7 +220,7 @@ export function RegularPOS() {
                 ))}
               </select>
               <select
-                className="px-3 py-2 border border-gray-300 rounded-md"
+                className="px-3 py-2 border border-teal-300 rounded-md"
                 value={selectedBrand}
                 onChange={(e) => setSelectedBrand(e.target.value)}
               >
@@ -251,7 +251,7 @@ export function RegularPOS() {
           <h2 className="text-xl font-bold mb-4">Cart ({cart.length})</h2>
           
           {cart.length === 0 ? (
-            <p className="text-gray-500 text-center py-4">No items in cart</p>
+            <p className="text-teal-500 text-center py-4">No items in cart</p>
           ) : (
             <>
               <div className="max-h-96 overflow-y-auto mb-4">
@@ -260,12 +260,12 @@ export function RegularPOS() {
                     <div className="flex justify-between">
                       <div className="flex-1 min-w-0">
                         <h3 className="font-medium truncate">{item.name}</h3>
-                        <p className="text-sm text-gray-500 truncate">IMEI: {item.imei}</p>
-                        <p className="text-sm text-gray-500">Brand: {item.brand || "N/A"}</p>
+                        <p className="text-sm text-teal-500 truncate">IMEI: {item.imei}</p>
+                        <p className="text-sm text-teal-500">Brand: {item.brand || "N/A"}</p>
                       </div>
                       <button 
                         onClick={() => removeFromCart(item.productId)}
-                        className="text-red-500 hover:text-red-700 ml-2 flex-shrink-0"
+                        className="text-red-500 hover:text-amber-700 ml-2 flex-shrink-0"
                       >
                         ×
                       </button>
@@ -363,7 +363,7 @@ export function RegularPOS() {
                     type="text"
                     value={customerName}
                     onChange={(e) => setCustomerName(e.target.value)}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md"
+                    className="w-full px-3 py-2 border border-teal-300 rounded-md"
                     placeholder={isWalkingCustomer ? "Optional" : "Enter customer name"}
                     disabled={isWalkingCustomer}
                   />
@@ -375,7 +375,7 @@ export function RegularPOS() {
                     type="text"
                     value={customerPhone}
                     onChange={(e) => setCustomerPhone(e.target.value)}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md"
+                    className="w-full px-3 py-2 border border-teal-300 rounded-md"
                     placeholder="Enter customer phone"
                   />
                 </div>
@@ -385,7 +385,7 @@ export function RegularPOS() {
                   <select
                     value={paymentMethod}
                     onChange={(e) => setPaymentMethod(e.target.value)}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md"
+                    className="w-full px-3 py-2 border border-teal-300 rounded-md"
                   >
                     <option value="cash">Cash</option>
                     <option value="card">Card</option>
@@ -396,7 +396,7 @@ export function RegularPOS() {
                 <button
                   onClick={handleCheckout}
                   disabled={isProcessing}
-                  className="w-full bg-red-600 text-white py-2 rounded-md hover:bg-red-700 disabled:opacity-50"
+                  className="w-full bg-amber-600 text-white py-2 rounded-md hover:bg-amber-700 disabled:opacity-50"
                 >
                   {isProcessing ? "Processing..." : "Complete Sale"}
                 </button>
@@ -426,20 +426,20 @@ function ProductCard({ product, onAddToCart, isInCart }: {
   const [price, setPrice] = useState(product.sellingPrice || product.costPrice * 1.2);
   
   return (
-    <div className="bg-white rounded-lg shadow p-4 border border-gray-200 hover:shadow-md transition-shadow w-full">
+    <div className="bg-white rounded-lg shadow p-4 border border-teal-200 hover:shadow-md transition-shadow w-full">
       <div className="mb-3">
         <h3 className="font-bold text-lg truncate">{product.name}</h3>
-        <p className="text-sm text-gray-600">Brand: {product.brand || "N/A"}</p>
-        <p className="text-sm text-gray-600 truncate">IMEI: {product.imei}</p>
+        <p className="text-sm text-teal-600">Brand: {product.brand || "N/A"}</p>
+        <p className="text-sm text-teal-600 truncate">IMEI: {product.imei}</p>
       </div>
       
       <div className="mb-3">
         <div className="flex items-center justify-between">
-          <span className="text-sm text-gray-500">Stock:</span>
+          <span className="text-sm text-teal-500">Stock:</span>
           <span className="font-medium">{product.currentStock || 0}</span>
         </div>
         <div className="flex items-center justify-between">
-          <span className="text-sm text-gray-500">Cost Price:</span>
+          <span className="text-sm text-teal-500">Cost Price:</span>
           <span className="font-medium">${product.costPrice.toFixed(2)}</span>
         </div>
       </div>
@@ -447,7 +447,7 @@ function ProductCard({ product, onAddToCart, isInCart }: {
       <div className="mb-3">
         <label className="block text-sm font-medium mb-1">Sell Price</label>
         <div className="flex">
-          <span className="inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500">
+          <span className="inline-flex items-center px-3 rounded-l-md border border-r-0 border-teal-300 bg-teal-50 text-teal-500">
             $
           </span>
           <input
@@ -456,7 +456,7 @@ function ProductCard({ product, onAddToCart, isInCart }: {
             step="0.01"
             value={price}
             onChange={(e) => setPrice(parseFloat(e.target.value) || 0)}
-            className="flex-1 min-w-0 block w-full px-3 py-2 rounded-r-md border border-gray-300"
+            className="flex-1 min-w-0 block w-full px-3 py-2 rounded-r-md border border-teal-300"
           />
         </div>
       </div>
@@ -467,7 +467,7 @@ function ProductCard({ product, onAddToCart, isInCart }: {
         className={`w-full py-2 px-4 rounded-md ${
           isInCart 
             ? "bg-green-100 text-green-800 cursor-not-allowed" 
-            : "bg-red-600 text-white hover:bg-red-700"
+            : "bg-amber-600 text-white hover:bg-amber-700"
         }`}
       >
         {isInCart ? "Added to Cart" : "Add to Cart"}

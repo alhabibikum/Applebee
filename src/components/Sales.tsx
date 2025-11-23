@@ -93,8 +93,8 @@ export function Sales() {
     <div className="space-y-6">
       {/* Header */}
       <div className="text-center lg:text-left">
-        <h1 className="text-2xl lg:text-3xl font-bold text-gray-900">Sales Management</h1>
-        <p className="text-gray-600 mt-2">Track and manage all sales transactions</p>
+        <h1 className="text-2xl lg:text-3xl font-bold text-teal-900">Sales Management</h1>
+        <p className="text-teal-600 mt-2">Track and manage all sales transactions</p>
       </div>
 
       {/* Stats Cards */}
@@ -151,21 +151,21 @@ export function Sales() {
       </div>
 
       {/* IMEI Tracking Section */}
-      <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+      <div className="bg-white rounded-xl shadow-sm border border-teal-200 p-6">
         <div className="flex items-center mb-4">
           <div className="w-10 h-10 bg-indigo-100 rounded-lg flex items-center justify-center mr-3">
             <span className="text-indigo-600 text-xl">🔍</span>
           </div>
           <div>
-            <h3 className="text-lg font-semibold text-gray-900">IMEI Tracking</h3>
-            <p className="text-sm text-gray-600">Track sales history by device IMEI number</p>
+            <h3 className="text-lg font-semibold text-teal-900">IMEI Tracking</h3>
+            <p className="text-sm text-teal-600">Track sales history by device IMEI number</p>
           </div>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* IMEI Selection */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-medium text-teal-700 mb-2">
               Select IMEI Number
             </label>
             <select
@@ -198,42 +198,42 @@ export function Sales() {
         {/* IMEI Sales History */}
         {selectedIMEI && imeiSalesHistory.length > 0 && (
           <div className="mt-6">
-            <h4 className="font-medium text-gray-900 mb-3">Sales History for IMEI: {selectedIMEI}</h4>
+            <h4 className="font-medium text-teal-900 mb-3">Sales History for IMEI: {selectedIMEI}</h4>
             <div className="overflow-x-auto">
-              <table className="w-full border border-gray-200 rounded-lg">
-                <thead className="bg-gray-50">
+              <table className="w-full border border-teal-200 rounded-lg">
+                <thead className="bg-teal-50">
                   <tr>
-                    <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Date</th>
-                    <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Invoice</th>
-                    <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Product</th>
-                    <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Customer</th>
-                    <th className="px-4 py-3 text-right text-xs font-medium text-gray-500 uppercase">Amount</th>
-                    <th className="px-4 py-3 text-center text-xs font-medium text-gray-500 uppercase">Actions</th>
+                    <th className="px-4 py-3 text-left text-xs font-medium text-teal-500 uppercase">Date</th>
+                    <th className="px-4 py-3 text-left text-xs font-medium text-teal-500 uppercase">Invoice</th>
+                    <th className="px-4 py-3 text-left text-xs font-medium text-teal-500 uppercase">Product</th>
+                    <th className="px-4 py-3 text-left text-xs font-medium text-teal-500 uppercase">Customer</th>
+                    <th className="px-4 py-3 text-right text-xs font-medium text-teal-500 uppercase">Amount</th>
+                    <th className="px-4 py-3 text-center text-xs font-medium text-teal-500 uppercase">Actions</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-200">
                   {imeiSalesHistory.map((sale) => (
-                    <tr key={sale._id} className="hover:bg-gray-50">
-                      <td className="px-4 py-3 text-sm text-gray-900">
+                    <tr key={sale._id} className="hover:bg-teal-50">
+                      <td className="px-4 py-3 text-sm text-teal-900">
                         {formatDate(sale._creationTime)}
                       </td>
-                      <td className="px-4 py-3 text-sm font-mono text-gray-900">
+                      <td className="px-4 py-3 text-sm font-mono text-teal-900">
                         INV-{sale._id.slice(-8).toUpperCase()}
                       </td>
-                      <td className="px-4 py-3 text-sm text-gray-900">
+                      <td className="px-4 py-3 text-sm text-teal-900">
                         {sale.matchingItems.map((item: any, idx: number) => (
                           <div key={idx} className="mb-1">
                             <div className="font-medium">{item.productName}</div>
-                            <div className="text-xs text-gray-500">
+                            <div className="text-xs text-teal-500">
                               IMEI: {item.imei} | Qty: {item.quantity} | ৳{item.unitPrice?.toLocaleString('en-BD')}
                             </div>
                           </div>
                         ))}
                       </td>
-                      <td className="px-4 py-3 text-sm text-gray-900">
+                      <td className="px-4 py-3 text-sm text-teal-900">
                         {sale.customerName || 'Walk-in Customer'}
                       </td>
-                      <td className="px-4 py-3 text-sm text-right font-medium text-gray-900">
+                      <td className="px-4 py-3 text-sm text-right font-medium text-teal-900">
                         ৳{sale.matchingItems.reduce((sum: number, item: any) => 
                           sum + ((item.unitPrice || 0) * (item.quantity || 0)), 0
                         ).toLocaleString('en-BD')}
@@ -241,7 +241,7 @@ export function Sales() {
                       <td className="px-4 py-3 text-center">
                         <button
                           onClick={() => handleViewInvoice(sale)}
-                          className="text-red-600 hover:text-red-800 text-sm font-medium"
+                          className="text-amber-600 hover:text-amber-800 text-sm font-medium"
                         >
                           View Invoice
                         </button>
@@ -256,12 +256,12 @@ export function Sales() {
       </div>
 
       {/* Filters */}
-      <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-        <h3 className="text-lg font-semibold text-gray-900 mb-4">Filter Sales</h3>
+      <div className="bg-white rounded-xl shadow-sm border border-teal-200 p-6">
+        <h3 className="text-lg font-semibold text-teal-900 mb-4">Filter Sales</h3>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-medium text-teal-700 mb-2">
               Search
             </label>
             <input
@@ -274,7 +274,7 @@ export function Sales() {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-medium text-teal-700 mb-2">
               Mobile Condition
             </label>
             <select
@@ -289,7 +289,7 @@ export function Sales() {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-medium text-teal-700 mb-2">
               Payment Method
             </label>
             <select
@@ -305,7 +305,7 @@ export function Sales() {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-medium text-teal-700 mb-2">
               Start Date
             </label>
             <input
@@ -317,7 +317,7 @@ export function Sales() {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-medium text-teal-700 mb-2">
               End Date
             </label>
             <input
@@ -331,15 +331,15 @@ export function Sales() {
       </div>
 
       {/* Sales List */}
-      <div className="bg-white rounded-xl shadow-sm border border-gray-200">
-        <div className="p-6 border-b border-gray-200">
+      <div className="bg-white rounded-xl shadow-sm border border-teal-200">
+        <div className="p-6 border-b border-teal-200">
           <div className="flex items-center justify-between">
             <div>
-              <h3 className="text-lg font-semibold text-gray-900">
+              <h3 className="text-lg font-semibold text-teal-900">
                 {conditionFilter === "new" ? "New Mobile Sales" : 
                  conditionFilter === "used" ? "Used Mobile Sales" : "Recent Sales"}
               </h3>
-              <p className="text-sm text-gray-600 mt-1">
+              <p className="text-sm text-teal-600 mt-1">
                 Showing {filteredSales.length} of {sales.length} sales
               </p>
             </div>
@@ -348,48 +348,48 @@ export function Sales() {
 
         <div className="overflow-x-auto">
           <table className="w-full">
-            <thead className="bg-gray-50">
+            <thead className="bg-teal-50">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-6 py-3 text-left text-xs font-medium text-teal-500 uppercase tracking-wider">
                   Date & Invoice
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-6 py-3 text-left text-xs font-medium text-teal-500 uppercase tracking-wider">
                   Customer
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-6 py-3 text-left text-xs font-medium text-teal-500 uppercase tracking-wider">
                   Items & IMEI
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-6 py-3 text-left text-xs font-medium text-teal-500 uppercase tracking-wider">
                   Payment
                 </th>
-                <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-6 py-3 text-right text-xs font-medium text-teal-500 uppercase tracking-wider">
                   Total
                 </th>
-                <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-6 py-3 text-center text-xs font-medium text-teal-500 uppercase tracking-wider">
                   Actions
                 </th>
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
               {filteredSales.map((sale) => (
-                <tr key={sale._id} className="hover:bg-gray-50">
+                <tr key={sale._id} className="hover:bg-teal-50">
                   <td className="px-6 py-4 whitespace-nowrap">
                     <div>
-                      <div className="text-sm font-medium text-gray-900">
+                      <div className="text-sm font-medium text-teal-900">
                         {formatDate(sale._creationTime)}
                       </div>
-                      <div className="text-sm text-gray-500 font-mono">
+                      <div className="text-sm text-teal-500 font-mono">
                         INV-{sale._id.slice(-8).toUpperCase()}
                       </div>
                     </div>
                   </td>
                   <td className="px-6 py-4">
-                    <div className="text-sm text-gray-900">
+                    <div className="text-sm text-teal-900">
                       {sale.customerName || 'Walk-in Customer'}
                     </div>
                   </td>
                   <td className="px-6 py-4">
-                    <div className="text-sm text-gray-900">
+                    <div className="text-sm text-teal-900">
                       {(sale.items || []).map((item: any, index: number) => (
                         <div key={index} className="mb-2 last:mb-0">
                           <div className="flex items-center space-x-2">
@@ -402,11 +402,11 @@ export function Sales() {
                               {(item.condition || "used") === "new" ? "New" : "Used"}
                             </span>
                           </div>
-                          <div className="text-xs text-gray-500">
+                          <div className="text-xs text-teal-500">
                             Qty: {item.quantity} × ৳{(item.unitPrice || 0).toLocaleString('en-BD')}
                           </div>
                           {item.imei && (
-                            <div className="text-xs font-mono bg-gray-100 px-2 py-1 rounded mt-1 inline-block">
+                            <div className="text-xs font-mono bg-teal-100 px-2 py-1 rounded mt-1 inline-block">
                               IMEI: {item.imei}
                             </div>
                           )}
@@ -420,11 +420,11 @@ export function Sales() {
                     </span>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-right">
-                    <div className="text-sm font-medium text-gray-900">
+                    <div className="text-sm font-medium text-teal-900">
                       ৳{(sale.total || 0).toLocaleString('en-BD')}
                     </div>
                     {(sale.discount || 0) > 0 && (
-                      <div className="text-xs text-red-600">
+                      <div className="text-xs text-amber-600">
                         Discount: ৳{(sale.discount || 0).toLocaleString('en-BD')}
                       </div>
                     )}
@@ -432,7 +432,7 @@ export function Sales() {
                   <td className="px-6 py-4 whitespace-nowrap text-center">
                     <button
                       onClick={() => handleViewInvoice(sale)}
-                      className="text-red-600 hover:text-red-900 text-sm font-medium"
+                      className="text-amber-600 hover:text-red-900 text-sm font-medium"
                     >
                       View Invoice
                     </button>
@@ -445,8 +445,8 @@ export function Sales() {
           {filteredSales.length === 0 && (
             <div className="text-center py-12">
               <div className="text-gray-400 text-6xl mb-4">📋</div>
-              <h3 className="text-lg font-medium text-gray-900 mb-2">No sales found</h3>
-              <p className="text-gray-500">
+              <h3 className="text-lg font-medium text-teal-900 mb-2">No sales found</h3>
+              <p className="text-teal-500">
                 {searchTerm || filterBy !== "all" || conditionFilter !== "all" || dateRange.start || dateRange.end || selectedIMEI
                   ? "Try adjusting your filters to see more results."
                   : "No sales have been recorded yet."}
