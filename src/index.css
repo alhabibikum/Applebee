@@ -4,7 +4,7 @@
 
 @layer base {
   body {
-    @apply bg-background text-foreground;
+    @apply bg-gradient-to-br from-teal-50 via-white to-amber-50 text-foreground min-h-screen;
   }
   
   html {
@@ -12,7 +12,7 @@
   }
   
   * {
-    @apply border-gray-200;
+    @apply border-teal-200;
   }
 }
 
@@ -193,7 +193,7 @@ img {
 
 /* Color variables */
 .bg-background {
-  @apply bg-teal-50;
+  @apply bg-gradient-to-br from-teal-50 via-white to-amber-50;
 }
 
 .text-foreground {

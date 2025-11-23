@@ -42,7 +42,7 @@ export function Dashboard({ onNavigate }: DashboardProps) {
         </div>
         <div className="mt-4 sm:mt-0">
           <button
-            onClick={() => onNavigate("pos")}
+            onClick={() => onNavigate("regular-pos")}
             className="btn-primary"
           >
             🛒 New Sale

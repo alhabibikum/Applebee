@@ -24,14 +24,14 @@ export function MobileHeader({ activeTab, onNavigate }: MobileHeaderProps) {
   return (
     <>
       {/* Mobile Header */}
-      <div className="lg:hidden bg-white shadow-sm border-b border-gray-200 sticky top-0 z-40">
+      <div className="lg:hidden bg-gradient-to-r from-teal-900 to-teal-800 shadow-lg border-b-4 border-amber-400 sticky top-0 z-40">
         <div className="flex items-center justify-between px-4 py-3">
           {/* Hamburger Menu Button */}
           <button
             onClick={() => setIsMenuOpen(true)}
-            className="p-2 rounded-lg hover:bg-gray-100 transition-colors"
+            className="p-2 rounded-lg hover:bg-teal-700 transition-colors"
           >
-            <svg className="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-6 h-6 text-amber-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
             </svg>
           </button>
@@ -39,12 +39,12 @@ export function MobileHeader({ activeTab, onNavigate }: MobileHeaderProps) {
           {/* Page Title */}
           <div className="flex items-center space-x-2">
             <span className="text-xl">{currentPage?.icon}</span>
-            <h1 className="text-lg font-semibold text-gray-900">{currentPage?.label}</h1>
+            <h1 className="text-lg font-semibold text-white">{currentPage?.label}</h1>
           </div>
 
           {/* Logo */}
-          <div className="w-8 h-8 bg-red-600 rounded-lg flex items-center justify-center">
-            <span className="text-white font-bold text-sm">📱</span>
+          <div className="w-8 h-8 bg-gradient-to-r from-amber-400 to-amber-500 rounded-lg flex items-center justify-center shadow-lg">
+            <span className="text-teal-900 font-bold text-sm">📱</span>
           </div>
         </div>
       </div>
@@ -59,24 +59,24 @@ export function MobileHeader({ activeTab, onNavigate }: MobileHeaderProps) {
           />
           
           {/* Sidebar */}
-          <div className="fixed left-0 top-0 bottom-0 w-80 bg-white shadow-xl transform transition-transform duration-300 ease-in-out">
+          <div className="fixed left-0 top-0 bottom-0 w-80 bg-gradient-to-b from-teal-900 to-teal-800 shadow-2xl transform transition-transform duration-300 ease-in-out">
             {/* Header */}
-            <div className="p-6 border-b border-gray-200">
+            <div className="p-6 border-b border-teal-700">
               <div className="flex items-center justify-between">
                 <div className="flex items-center space-x-3">
-                  <div className="w-10 h-10 bg-red-600 rounded-lg flex items-center justify-center">
-                    <span className="text-white font-bold text-xl">📱</span>
+                  <div className="w-10 h-10 bg-gradient-to-r from-amber-400 to-amber-500 rounded-lg flex items-center justify-center shadow-lg">
+                    <span className="text-teal-900 font-bold text-xl">📱</span>
                   </div>
                   <div>
-                    <h1 className="text-xl font-bold text-gray-900">Mobile Shop</h1>
-                    <p className="text-sm text-gray-500">Management System</p>
+                    <h1 className="text-xl font-bold text-white">Mobile Shop</h1>
+                    <p className="text-sm text-amber-100">Management System</p>
                   </div>
                 </div>
                 <button
                   onClick={() => setIsMenuOpen(false)}
-                  className="p-2 rounded-lg hover:bg-gray-100 transition-colors"
+                  className="p-2 rounded-lg hover:bg-teal-700 transition-colors"
                 >
-                  <svg className="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-6 h-6 text-amber-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                   </svg>
                 </button>
@@ -93,10 +93,10 @@ export function MobileHeader({ activeTab, onNavigate }: MobileHeaderProps) {
                       onNavigate(item.id);
                       setIsMenuOpen(false);
                     }}
-                    className={`w-full flex items-center space-x-3 px-4 py-3 text-left rounded-lg transition-colors ${
+                    className={`w-full flex items-center space-x-3 px-4 py-3 text-left rounded-lg transition-all duration-200 ${
                       activeTab === item.id
-                        ? "bg-red-50 text-red-700 border-r-2 border-red-600"
-                        : "text-gray-700 hover:bg-gray-50"
+                        ? "bg-gradient-to-r from-amber-400 to-amber-500 text-teal-900 font-semibold shadow-lg"
+                        : "text-amber-100 hover:bg-teal-700/50"
                     }`}
                   >
                     <span className="text-xl">{item.icon}</span>

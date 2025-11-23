@@ -145,7 +145,7 @@ function App() {
         <SignInPage />
       </Unauthenticated>
       <Authenticated>
-        <div className="min-h-screen bg-gray-50">
+        <div className="min-h-screen bg-gradient-to-br from-teal-50 via-white to-amber-50">
           <OfflineIndicator />
           
           {/* Sync Status - Show on desktop */}
@@ -182,15 +182,15 @@ function App() {
           ) : (
             <div className="flex h-screen">
               {/* Desktop Sidebar */}
-              <div className="w-64 bg-white shadow-lg">
+              <div className="w-64 bg-gradient-to-b from-teal-900 to-teal-800 shadow-2xl">
                 <div className="p-6">
                   <div className="flex items-center space-x-3">
-                    <div className="w-10 h-10 bg-red-600 rounded-lg flex items-center justify-center">
-                      <span className="text-white font-bold text-xl">📱</span>
+                    <div className="w-10 h-10 bg-gradient-to-r from-amber-400 to-amber-500 rounded-lg flex items-center justify-center shadow-lg">
+                      <span className="text-teal-900 font-bold text-xl">📱</span>
                     </div>
                     <div>
-                      <h1 className="text-xl font-bold text-gray-900">Mobile Shop</h1>
-                      <p className="text-sm text-gray-500">Management System</p>
+                      <h1 className="text-xl font-bold text-white">Mobile Shop</h1>
+                      <p className="text-sm text-amber-100">Management System</p>
                     </div>
                   </div>
                 </div>
@@ -211,10 +211,10 @@ function App() {
                       <button
                         key={item.id}
                         onClick={() => setActiveTab(item.id)}
-                        className={`w-full flex items-center space-x-3 px-4 py-3 text-left rounded-lg mb-1 transition-colors ${
+                        className={`w-full flex items-center space-x-3 px-4 py-3 text-left rounded-lg mb-1 transition-all duration-200 ${
                           activeTab === item.id
-                            ? "bg-red-50 text-red-700 border-r-2 border-red-600"
-                            : "text-gray-700 hover:bg-gray-50"
+                            ? "bg-gradient-to-r from-amber-400 to-amber-500 text-teal-900 font-semibold shadow-lg"
+                            : "text-amber-100 hover:bg-teal-700/50"
                         }`}
                       >
                         <span className="text-xl">{item.icon}</span>
