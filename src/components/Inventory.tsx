@@ -79,13 +79,13 @@ export function Inventory() {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center space-y-4 sm:space-y-0">
         <div>
-          <h2 className="text-2xl font-bold text-gray-900">Inventory Management</h2>
-          <p className="text-gray-600">Manage your mobile phone inventory</p>
+          <h2 className="text-2xl font-bold text-teal-900">Inventory Management</h2>
+          <p className="text-teal-600">Manage your mobile phone inventory</p>
         </div>
         <div className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-2">
           <button
             onClick={() => setShowAddCategoryModal(true)}
-            className="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-lg font-medium transition-colors flex items-center space-x-2"
+            className="bg-amber-600 hover:bg-amber-700 text-white px-4 py-2 rounded-lg font-medium transition-colors flex items-center space-x-2"
           >
             <span>📂</span>
             <span>Add Category</span>
@@ -108,7 +108,7 @@ export function Inventory() {
       </div>
 
       {/* Filters */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
+      <div className="bg-white rounded-lg shadow-sm border border-teal-200 p-4">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
           <div>
             <input
@@ -116,14 +116,14 @@ export function Inventory() {
               placeholder="Search products..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent"
+              className="w-full px-3 py-2 border border-teal-200 rounded-lg focus:ring-2 focus:ring-amber-400 focus:border-transparent"
             />
           </div>
           <div>
             <select
               value={selectedBrand}
               onChange={(e) => setSelectedBrand(e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent"
+              className="w-full px-3 py-2 border border-teal-200 rounded-lg focus:ring-2 focus:ring-amber-400 focus:border-transparent"
             >
               <option value="">All Brands</option>
               {brands?.map((brand) => (
@@ -135,7 +135,7 @@ export function Inventory() {
             <select
               value={selectedCategory}
               onChange={(e) => setSelectedCategory(e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent"
+              className="w-full px-3 py-2 border border-teal-200 rounded-lg focus:ring-2 focus:ring-amber-400 focus:border-transparent"
             >
               <option value="">All Categories</option>
               {categories?.map((category) => (
@@ -147,7 +147,7 @@ export function Inventory() {
             <select
               value={selectedCondition}
               onChange={(e) => setSelectedCondition(e.target.value as "" | "new" | "used")}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent"
+              className="w-full px-3 py-2 border border-teal-200 rounded-lg focus:ring-2 focus:ring-amber-400 focus:border-transparent"
             >
               <option value="">All Conditions</option>
               <option value="new">New Mobiles</option>
@@ -160,9 +160,9 @@ export function Inventory() {
                 type="checkbox"
                 checked={includeOutOfStock}
                 onChange={(e) => setIncludeOutOfStock(e.target.checked)}
-                className="rounded border-gray-300 text-red-600 focus:ring-red-500"
+                className="rounded border-teal-300 text-amber-600 focus:ring-amber-500"
               />
-              <span className="text-sm text-gray-700">Include out of stock</span>
+              <span className="text-sm text-teal-700">Include out of stock</span>
             </label>
           </div>
         </div>
@@ -170,36 +170,36 @@ export function Inventory() {
 
       {/* Products Summary */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+        <div className="bg-teal-50 border border-teal-200 rounded-lg p-4">
           <div className="flex items-center space-x-3">
-            <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
-              <span className="text-green-600 text-xl">📱</span>
+            <div className="w-10 h-10 bg-teal-100 rounded-lg flex items-center justify-center">
+              <span className="text-teal-600 text-xl">📱</span>
             </div>
             <div>
-              <p className="text-sm text-green-600 font-medium">New Mobiles</p>
-              <p className="text-2xl font-bold text-green-700">{newProducts.length}</p>
+              <p className="text-sm text-teal-600 font-medium">New Mobiles</p>
+              <p className="text-2xl font-bold text-teal-700">{newProducts.length}</p>
             </div>
           </div>
         </div>
-        <div className="bg-orange-50 border border-orange-200 rounded-lg p-4">
+        <div className="bg-amber-50 border border-amber-200 rounded-lg p-4">
           <div className="flex items-center space-x-3">
-            <div className="w-10 h-10 bg-orange-100 rounded-lg flex items-center justify-center">
-              <span className="text-orange-600 text-xl">📱</span>
+            <div className="w-10 h-10 bg-amber-100 rounded-lg flex items-center justify-center">
+              <span className="text-amber-600 text-xl">📱</span>
             </div>
             <div>
-              <p className="text-sm text-orange-600 font-medium">Used Mobiles</p>
-              <p className="text-2xl font-bold text-orange-700">{usedProducts.length}</p>
+              <p className="text-sm text-amber-600 font-medium">Used Mobiles</p>
+              <p className="text-2xl font-bold text-amber-700">{usedProducts.length}</p>
             </div>
           </div>
         </div>
-        <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+        <div className="bg-amber-50 border border-amber-200 rounded-lg p-4">
           <div className="flex items-center space-x-3">
-            <div className="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center">
-              <span className="text-red-600 text-xl">⚠️</span>
+            <div className="w-10 h-10 bg-amber-100 rounded-lg flex items-center justify-center">
+              <span className="text-amber-600 text-xl">⚠️</span>
             </div>
             <div>
-              <p className="text-sm text-red-600 font-medium">Low Stock</p>
-              <p className="text-2xl font-bold text-red-700">
+              <p className="text-sm text-amber-600 font-medium">Low Stock</p>
+              <p className="text-2xl font-bold text-amber-700">
                 {filteredProducts.filter(p => (p.currentStock || 0) <= (p.minStockLevel || 0)).length}
               </p>
             </div>
@@ -208,79 +208,79 @@ export function Inventory() {
       </div>
 
       {/* Products Table */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
+      <div className="bg-white rounded-lg shadow-sm border border-teal-200 overflow-hidden">
         <div className="overflow-x-auto">
-          <table className="min-w-full divide-y divide-gray-200">
-            <thead className="bg-gray-50">
+          <table className="min-w-full divide-y divide-teal-200">
+            <thead className="bg-teal-50">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-6 py-3 text-left text-xs font-medium text-teal-600 uppercase tracking-wider">
                   Product
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-6 py-3 text-left text-xs font-medium text-teal-600 uppercase tracking-wider">
                   Condition
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-6 py-3 text-left text-xs font-medium text-teal-600 uppercase tracking-wider">
                   SKU/IMEI
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-6 py-3 text-left text-xs font-medium text-teal-600 uppercase tracking-wider">
                   Price
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-6 py-3 text-left text-xs font-medium text-teal-600 uppercase tracking-wider">
                   Stock
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-6 py-3 text-left text-xs font-medium text-teal-600 uppercase tracking-wider">
                   Status
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-6 py-3 text-left text-xs font-medium text-teal-600 uppercase tracking-wider">
                   Actions
                 </th>
               </tr>
             </thead>
-            <tbody className="bg-white divide-y divide-gray-200">
+            <tbody className="bg-white divide-y divide-teal-200">
               {filteredProducts.map((product) => (
-                <tr key={product._id} className="hover:bg-gray-50">
+                <tr key={product._id} className="hover:bg-teal-50">
                   <td className="px-6 py-4 whitespace-nowrap">
                     <div>
-                      <div className="text-sm font-medium text-gray-900">{product.name}</div>
-                      <div className="text-sm text-gray-500">{product.brand} {product.model}</div>
+                      <div className="text-sm font-medium text-teal-900">{product.name}</div>
+                      <div className="text-sm text-teal-600">{product.brand} {product.model}</div>
                     </div>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
                     <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${
                       (product.condition || "new") === "new" 
-                        ? "bg-green-100 text-green-800" 
-                        : "bg-orange-100 text-orange-800"
+                        ? "bg-teal-100 text-teal-800" 
+                        : "bg-amber-100 text-amber-800"
                     }`}>
                       📱 {(product.condition || "new") === "new" ? "New" : "Used"}
                     </span>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
-                    <div className="text-sm text-gray-900">{product.sku || "N/A"}</div>
+                    <div className="text-sm text-teal-900">{product.sku || "N/A"}</div>
                     {product.imei && (
-                      <div className="text-sm text-gray-500">IMEI: {product.imei}</div>
+                      <div className="text-sm text-teal-600">IMEI: {product.imei}</div>
                     )}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
-                    <div className="text-sm text-gray-900">৳{product.sellingPrice?.toLocaleString('en-BD') || "N/A"}</div>
-                    <div className="text-sm text-gray-500">Cost: ৳{product.costPrice.toLocaleString('en-BD')}</div>
+                    <div className="text-sm text-teal-900">৳{product.sellingPrice?.toLocaleString('en-BD') || "N/A"}</div>
+                    <div className="text-sm text-teal-600">Cost: ৳{product.costPrice.toLocaleString('en-BD')}</div>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
                     <div className={`text-sm font-medium ${
                       (product.currentStock || 0) <= (product.minStockLevel || 0)
-                        ? "text-red-600" 
-                        : "text-gray-900"
+                        ? "text-amber-600" 
+                        : "text-teal-900"
                     }`}>
                       {product.currentStock || 0} {product.unit || "pcs"}
                     </div>
-                    <div className="text-sm text-gray-500">Min: {product.minStockLevel || 0}</div>
+                    <div className="text-sm text-teal-600">Min: {product.minStockLevel || 0}</div>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
                     <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${
                       (product.currentStock || 0) <= (product.minStockLevel || 0)
-                        ? "bg-red-100 text-red-800"
+                        ? "bg-amber-100 text-amber-800"
                         : (product.currentStock || 0) === 0
-                        ? "bg-gray-100 text-gray-800"
-                        : "bg-green-100 text-green-800"
+                        ? "bg-teal-100 text-teal-800"
+                        : "bg-teal-100 text-teal-800"
                     }`}>
                       {(product.currentStock || 0) <= (product.minStockLevel || 0) && (product.currentStock || 0) > 0
                         ? "Low Stock"
@@ -293,13 +293,13 @@ export function Inventory() {
                   <td className="px-6 py-4 whitespace-nowrap text-sm font-medium space-x-2">
                     <button
                       onClick={() => handleEditProduct(product)}
-                      className="text-blue-600 hover:text-blue-900"
+                      className="text-amber-600 hover:text-amber-900"
                     >
                       Edit
                     </button>
                     <button
                       onClick={() => handleDeleteProduct(product._id)}
-                      className="text-red-600 hover:text-red-900"
+                      className="text-amber-600 hover:text-amber-900"
                     >
                       Delete
                     </button>
